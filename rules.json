@@ -1,0 +1,62 @@
+[
+    {
+      "id": 1,
+      "priority": 1,
+      "action": { "type": "block" },
+      "condition": {"urlFilter": "googleads", "resourceTypes": ["sub_frame","script"] }
+    },
+    {
+        "id": 2,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {"urlFilter": "adservice", "resourceTypes": ["sub_frame","script"] }
+    },
+    {
+      "id": 3,
+      "priority": 1,
+      "action": { "type": "block" },
+      "condition": { "urlFilter": "taboola", "resourceTypes": ["script","sub_frame"] }
+    },
+    {
+        "id": 4,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": { "urlFilter": "pubmatic", "resourceTypes": ["script","sub_frame"] }
+    },
+    {
+        "id": 5,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {"urlFilter": "g.doubleclick.net", "resourceTypes": ["sub_frame","script"] }
+    },
+    {
+        "id": 6,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {"urlFilter": "fireworktv", "resourceTypes": ["sub_frame","script"] }
+    },
+    {
+        "id": 7,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {"urlFilter": "adpushup", "resourceTypes": ["sub_frame","script"] }
+    },
+    {
+        "id": 8,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {"urlFilter": "fwpub1", "resourceTypes": ["sub_frame","script"] }
+    },
+    {
+        "id": 9,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {"urlFilter": "amazon-adsystem", "resourceTypes": ["sub_frame","script"] }
+    },
+    {
+        "id": 10,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {"urlFilter": "outbrain*.com", "resourceTypes": ["sub_frame","script"] }
+    }
+]

@@ -1,0 +1,34 @@
+{
+    "manifest_version": 3,
+    "name": "No ads",
+    "description": "Simple Ad blocker",
+    "version": "1.0",
+    "action": {
+      "default_popup": "hello.html",
+      "default_icon": "hello.png"
+    },
+    "background": {
+      "service_worker": "scripts/background.js"
+    },
+    "declarative_net_request": {
+      "rule_resources": [{
+        "id": "ruleset_1",
+        "enabled": true,
+        "path": "rules.json"
+      }]
+    },
+    "permissions": [
+      "declarativeNetRequest",
+      "declarativeNetRequestFeedback",
+      "https://*",
+      "https://*/*"
+    ],
+    "content_scripts": [
+        {
+          "js": ["scripts/content.js"],
+          "matches": [
+            "https://*/*"
+          ]
+        }
+    ]
+}
