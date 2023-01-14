@@ -63,36 +63,36 @@ findAllEmptyAdDivs = () => {
 
     // find all divs without any advertisement text...but they are empty...e.g. mint.com
     // try to grep window.innerHTML for googletag.defineSlot.... and hide all those divs..
-    var headContent = document.getElementsByTagName('head')[0].innerHTML;
-    var bodyContent = document.getElementsByTagName('body')[0].innerHTML;
+    // var headContent = document.getElementsByTagName('head')[0].innerHTML;
+    // var bodyContent = document.getElementsByTagName('body')[0].innerHTML;
 
-    let regexAds = /defineSlot\(.*?('|")([^'"]*)('|")\)/g;
-    let anySlots1=[];
-    let anySlots2=[];
+    // let regexAds = /defineSlot\(.*?('|")([^'"]*)('|")\)/g;
+    // let anySlots1=[];
+    // let anySlots2=[];
 
-    while (tmpArr = regexAds.exec(headContent)) {
-        anySlots1.push(tmpArr);
-    }
-    while (tmpArr = regexAds.exec(bodyContent)) {
-        anySlots2.push(tmpArr);
-    }
+    // while (tmpArr = regexAds.exec(headContent)) {
+    //     anySlots1.push(tmpArr);
+    // }
+    // while (tmpArr = regexAds.exec(bodyContent)) {
+    //     anySlots2.push(tmpArr);
+    // }
 
-    if (anySlots1 && anySlots1.length) {
-        for(let j=0; j<anySlots1.length; ++j) {
-            let divId = anySlots1[j][2];
-            console.log("found div id---",divId);
-            let divEl = document.getElementById(divId);
-            divEl ? allAfterBeforeDivs.push(divEl): "";
-        }
-    }
-    if (anySlots2 && anySlots2.length) {
-        for(let j=0; j<anySlots2.length; ++j) {
-            let divId = anySlots2[j][2];
-            console.log("found div id---",divId);
-            let divEl = document.getElementById(divId);
-            divEl ? allAfterBeforeDivs.push(divEl): "";
-        }
-    }
+    // if (anySlots1 && anySlots1.length) {
+    //     for(let j=0; j<anySlots1.length; ++j) {
+    //         let divId = anySlots1[j][2];
+    //         console.log("found div id---",divId);
+    //         let divEl = document.getElementById(divId);
+    //         divEl ? allAfterBeforeDivs.push(divEl): "";
+    //     }
+    // }
+    // if (anySlots2 && anySlots2.length) {
+    //     for(let j=0; j<anySlots2.length; ++j) {
+    //         let divId = anySlots2[j][2];
+    //         console.log("found div id---",divId);
+    //         let divEl = document.getElementById(divId);
+    //         divEl ? allAfterBeforeDivs.push(divEl): "";
+    //     }
+    // }
     if (allAfterBeforeDivs && allAfterBeforeDivs.length) {
         for(var index=0; index<allAfterBeforeDivs.length; ++index) {
             let divEl = allAfterBeforeDivs[index];
@@ -188,7 +188,7 @@ setTimeout(() => {
     // findAdsIframe();
     findAllEmptyAdDivs();
     // Start observing the target node for configured mutations
-    observer.observe(targetNode, config);
+    // observer.observe(targetNode, config);
 }, 4000);
 
 // Later, you can stop observing

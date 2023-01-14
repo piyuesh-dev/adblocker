@@ -1,6 +1,6 @@
 {
     "manifest_version": 3,
-    "name": "No ads",
+    "name": "No Ads",
     "description": "Simple Ad blocker",
     "version": "1.0",
     "action": {

@@ -3,7 +3,7 @@
       "id": 1,
       "priority": 1,
       "action": { "type": "block" },
-      "condition": {"urlFilter": "googleads", "resourceTypes": ["sub_frame","script"] }
+      "condition": {"urlFilter": "googleads", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
     },
     {
         "id": 2,
@@ -15,19 +15,19 @@
       "id": 3,
       "priority": 1,
       "action": { "type": "block" },
-      "condition": { "urlFilter": "taboola", "resourceTypes": ["script","sub_frame"] }
+      "condition": { "urlFilter": "taboola", "resourceTypes": ["script","sub_frame","xmlhttprequest"] }
     },
     {
         "id": 4,
         "priority": 1,
         "action": { "type": "block" },
-        "condition": { "urlFilter": "pubmatic", "resourceTypes": ["script","sub_frame"] }
+        "condition": { "urlFilter": "pubmatic", "resourceTypes": ["script","sub_frame","xmlhttprequest"] }
     },
     {
         "id": 5,
         "priority": 1,
         "action": { "type": "block" },
-        "condition": {"urlFilter": "g.doubleclick.net", "resourceTypes": ["sub_frame","script"] }
+        "condition": {"urlFilter": "g.doubleclick.net", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
     },
     {
         "id": 6,
@@ -58,5 +58,11 @@
         "priority": 1,
         "action": { "type": "block" },
         "condition": {"urlFilter": "outbrain*.com", "resourceTypes": ["sub_frame","script"] }
+    },
+    {
+        "id": 11,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {"urlFilter": "googlesyndication", "resourceTypes": ["sub_frame","script","xmlhttprequest","media"] }
     }
 ]
