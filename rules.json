@@ -27,7 +27,7 @@
         "id": 5,
         "priority": 1,
         "action": { "type": "block" },
-        "condition": {"urlFilter": "g.doubleclick.net", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
+        "condition": {"urlFilter": "*.doubleclick.net", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
     },
     {
         "id": 6,
@@ -88,5 +88,17 @@
         "priority": 1,
         "action": { "type": "block" },
         "condition": {"urlFilter": "vukkle.com", "resourceTypes": ["sub_frame","script","xmlhttprequest","media"] }
+    },
+    {
+        "id": 16,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {"urlFilter": "adnxs*.com", "resourceTypes": ["sub_frame","script","xmlhttprequest","media"] }
+    },
+    {
+        "id": 17,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {"urlFilter": "libs_ad-service_dist_NativeAdService_js", "resourceTypes": ["sub_frame","script","xmlhttprequest","media"] }
     }
 ]

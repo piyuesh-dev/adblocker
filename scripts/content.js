@@ -9,7 +9,7 @@ let adLabelObj = {
 }
 
 findAllEmptyAdDivs = (rootEl) => {
-    // find all Divs with text or content "advertisement"...and hide them
+    // find all Divs with text or content equals to "advertisement" or "ad", "ads"...and hide them
     let allAfterBeforeDivs = Array.from(rootEl.querySelectorAll('div,span')).filter((divEl)=>{
         let val1 = getComputedStyle(divEl, ':before').getPropertyValue('content').toLowerCase();
         let val2 = getComputedStyle(divEl, ':after').getPropertyValue('content').toLowerCase();
@@ -17,7 +17,7 @@ findAllEmptyAdDivs = (rootEl) => {
 
         return ((val1 in adLabelObj) || (val2 in adLabelObj) || (val3 in adLabelObj));
     });
-    console.dir(allAfterBeforeDivs);
+    // console.dir(allAfterBeforeDivs);
     // find divs with data-ad-slot or data-ad-unit...hide them....
     allAfterBeforeDivs = allAfterBeforeDivs.concat(Array.from(
         rootEl.querySelectorAll(`
@@ -25,9 +25,12 @@ findAllEmptyAdDivs = (rootEl) => {
             div[data-adsslot],
             div[data-adslot],
             div[data-ad-unit],
+            div[data-adunit],
             div[data-adcode],
             div[id*="gpt_ad"],
-            div[id*="div-gpt-ad"]`)
+            div[id*="div-gpt-ad"],
+            display-ads,
+            views-native-ad`)
     ));
 
     // find all divs without any advertisement text...but they are empty...e.g. mint.com
@@ -49,17 +52,18 @@ findAllEmptyAdDivs = (rootEl) => {
         for(var index=0; index<allAfterBeforeDivs.length; ++index) {
             let divEl = allAfterBeforeDivs[index];
 
-            // // find top most parent of iframe which has no other child...
+            // find top most parent of iframe which has no other child or a script child
+            // or only a text child with text ads|advertisement
             let topParentEl = findTopParent(divEl);
             // https://stackoverflow.com/a/38454562
-            topParentEl.style = "display: none!important";
+            topParentEl ? topParentEl.style = "display: none!important" : "";
         }
     }
 }
 
-// https://regex101.com/r/GqKaIZ/1
-// https://regex101.com/r/fUVRvh/1
-// try to grep window.innerHTML for googletag.defineSlot.... and hide all those divs..
+// https://regex101.com/r/GqKaIZ/1 and https://regex101.com/r/fUVRvh/1
+// try to grep window.innerHTML for googletag.defineSlot or googletag.display
+// find div ids for ads rendering and hide all those divs..
 function findAdDivsAsPerRegex(htmlString) {
     let regexAds1 = /defineSlot\(.*?('|")([^'"]*)('|")\)/g;
     let regexAds2 = /(googletag|gpt).display\(['"]{1}(.*?)['"]{1}\)/g;
@@ -118,7 +122,11 @@ function findOnlyTextChildParent(childEl) {
     
     // only consider innerText value if other child is empty...., else just hide childEl
     // so that we don't hide any valid non-ad content from html
-    if(possibleAdsLabel.find((element) => {return ((element==child1Text && child2Text=="") || (element==child2Text && child1Text==""));})) {
+    let needToFindParent = possibleAdsLabel.find((element) => {
+        return ((element==child1Text && child2Text=="")
+                || (element==child2Text && child1Text==""));
+    });
+    if(needToFindParent) {
         return findTopParent(parentEl);
     } else {
         return childEl;
@@ -144,6 +152,12 @@ function addStyleSheetAds() {
         display:none !important;
     }
     ins[class="adsbygoogle"] {
+        display:none !important;
+    }
+    display-ads {
+        display:none !important;
+    }
+    views-native-ad {
         display:none !important;
     }
     div[data-ad-slot] {

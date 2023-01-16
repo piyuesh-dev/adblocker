@@ -19,8 +19,6 @@
     },
     "permissions": [
       "declarativeNetRequest",
-      "declarativeNetRequestFeedback",
-      "https://*",
       "https://*/*"
     ],
     "content_scripts": [
