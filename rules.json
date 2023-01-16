@@ -64,5 +64,29 @@
         "priority": 1,
         "action": { "type": "block" },
         "condition": {"urlFilter": "googlesyndication", "resourceTypes": ["sub_frame","script","xmlhttprequest","media"] }
+    },
+    {
+        "id": 12,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {"urlFilter": "mgid.com", "resourceTypes": ["sub_frame","script","xmlhttprequest","media"] }
+    },
+    {
+        "id": 13,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {"urlFilter": "vdo.ai", "resourceTypes": ["sub_frame","script","xmlhttprequest","media"] }
+    },
+    {
+        "id": 14,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {"urlFilter": "clmbtech.com", "resourceTypes": ["sub_frame","script","xmlhttprequest","media"] }
+    },
+    {
+        "id": 15,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {"urlFilter": "vukkle.com", "resourceTypes": ["sub_frame","script","xmlhttprequest","media"] }
     }
 ]
