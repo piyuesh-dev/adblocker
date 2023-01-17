@@ -3,19 +3,18 @@
     "name": "No Ads",
     "description": "Simple Ad blocker",
     "version": "1.0",
-    "action": {
-      "default_popup": "hello.html",
-      "default_icon": "hello.png"
-    },
-    "background": {
-      "service_worker": "scripts/background.js"
-    },
     "declarative_net_request": {
       "rule_resources": [{
         "id": "ruleset_1",
         "enabled": true,
         "path": "rules.json"
       }]
+    },
+    "icons": {
+      "16": "images/icon16.png",
+      "32": "images/icon32.png",
+      "48": "images/icon48.png",
+      "128": "images/icon128.png"
     },
     "permissions": [
       "declarativeNetRequest",

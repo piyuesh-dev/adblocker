@@ -6,8 +6,34 @@ let adLabelObj = {
     "\"ad\"":1,
     "ads":1,
     "\"ads\"":1,
+};
+// don't run our script on below domains just not to effect their performance...
+let whitelistDomains = [
+    "youtube",
+    "vimeo",
+    "instagram",
+    "facebook",
+    "spotify",
+    "github",
+    "bitbucket",
+    "aws.amazon.com",
+    "azure",
+    "atlassian",
+];
+let scriptEnable = true;
+
+for (let index = 0; index < whitelistDomains.length; ++index) {
+    const allowedDomain = whitelistDomains[index];
+
+    if (location.hostname.indexOf(allowedDomain) != -1) {
+        scriptEnable = false;
+        break;
+    }
 }
 
+/**
+ * Finds all divs which acts as ads container, and hide them or their most relevant parent.
+ */
 findAllEmptyAdDivs = (rootEl) => {
     // find all Divs with text or content equals to "advertisement" or "ad", "ads"...and hide them
     let allAfterBeforeDivs = Array.from(rootEl.querySelectorAll('div,span')).filter((divEl)=>{
@@ -18,7 +44,7 @@ findAllEmptyAdDivs = (rootEl) => {
         return ((val1 in adLabelObj) || (val2 in adLabelObj) || (val3 in adLabelObj));
     });
     // console.dir(allAfterBeforeDivs);
-    // find divs with data-ad-slot or data-ad-unit...hide them....
+    // find divs with data-ad-slot or data-ad-unit, etc...hide them....
     allAfterBeforeDivs = allAfterBeforeDivs.concat(Array.from(
         rootEl.querySelectorAll(`
             div[data-ad-slot],
@@ -177,8 +203,9 @@ const config = { attributes: false, childList: true, subtree: true };
 // Callback function to execute when mutations are observed
 const callback = (mutationList, observer) => {
   for (const mutation of mutationList) {
+    // When top url changes, e.g. on news sites upon scrolling top url reflects the article being read...
+    // we need to re-run all process again to hide ads divs...
     if (oldHref != document.location.href) {
-        // console.log(" url changed at the top....");
         try {
             findAllEmptyAdDivs(document);
             oldHref = document.location.href;
@@ -192,20 +219,22 @@ const callback = (mutationList, observer) => {
         // nothing...
       }
     } else if (mutation.type === 'attributes') {
-      console.log(`The ${mutation.attributeName} attribute was modified.`);
+    //   console.log(`The ${mutation.attributeName} attribute was modified.`);
     }
   }
 };
 
-// Create an observer instance linked to the callback function
-const observer = new MutationObserver(callback);
+if(scriptEnable) {
+    // Create an observer instance linked to the callback function
+    const observer = new MutationObserver(callback);
 
-setTimeout(() => {
-    addStyleSheetAds();
-    findAllEmptyAdDivs(document);
-    // Start observing the target node for configured mutations
-    observer.observe(targetNode, config);
-}, 500);
+    setTimeout(() => {
+        addStyleSheetAds();
+        findAllEmptyAdDivs(document);
+        // Start observing the target node for configured mutations
+        observer.observe(targetNode, config);
+    }, 500);
 
-// Later, you can stop observing
-// observer.disconnect();
+    // Later, you can stop observing
+    // observer.disconnect();
+}
