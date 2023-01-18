@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
     "name": "No Ads",
-    "description": "Simple Ad blocker",
-    "version": "1.0",
+    "description": "Simple Ad blocker to block display ads",
+    "version": "0.0.1",
     "declarative_net_request": {
       "rule_resources": [{
         "id": "ruleset_1",
@@ -17,9 +17,9 @@
       "128": "images/icon128.png"
     },
     "permissions": [
-      "declarativeNetRequest",
-      "https://*/*"
+      "declarativeNetRequest"
     ],
+    "host_permissions": ["http://*/*", "https://*/*"],
     "content_scripts": [
         {
           "js": ["scripts/content.js"],

@@ -7,8 +7,9 @@ let adLabelObj = {
     "ads":1,
     "\"ads\"":1,
 };
-// don't run our script on below domains just not to effect their performance...
+// don't run our script on below domains just not to effect their functionality...
 let whitelistDomains = [
+    "google.com",
     "youtube",
     "vimeo",
     "instagram",
@@ -16,9 +17,11 @@ let whitelistDomains = [
     "spotify",
     "github",
     "bitbucket",
-    "aws.amazon.com",
     "azure",
     "atlassian",
+    "amazon.com",
+    "flipkart.com",
+    "walmart.com",
 ];
 let scriptEnable = true;
 
@@ -56,7 +59,8 @@ findAllEmptyAdDivs = (rootEl) => {
             div[id*="gpt_ad"],
             div[id*="div-gpt-ad"],
             display-ads,
-            views-native-ad`)
+            views-native-ad
+            `)
     ));
 
     // find all divs without any advertisement text...but they are empty...e.g. mint.com
@@ -135,7 +139,7 @@ function findTopParent(childEl) {
     return parentEl;
 }
 
-// to handle cases for display ads where "Advertisement" is one node above actual google ad..
+// to handle cases for display ads where "Advertisement"|"Ad"|"Ads" is only one node above/below actual google ad..
 function findOnlyTextChildParent(childEl) {
     let parentEl = childEl.parentElement;
     let childNodes = parentEl.children;
@@ -193,6 +197,7 @@ function addStyleSheetAds() {
     document.head.appendChild(style);  
 }
 
+// We need to listen to some events when top url changes while scrolling down...
 // Select the node that will be observed for mutations
 const targetNode = document.body;
 let oldHref = document.location.href;
@@ -233,7 +238,7 @@ if(scriptEnable) {
         findAllEmptyAdDivs(document);
         // Start observing the target node for configured mutations
         observer.observe(targetNode, config);
-    }, 500);
+    }, 300);
 
     // Later, you can stop observing
     // observer.disconnect();
