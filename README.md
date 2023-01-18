@@ -1,5 +1,5 @@
-# adblocker
-Simple Ad blocker
+# No Ads
+Simple Ad blocker to block display ads
 
 # How it works
 Defined few rules (https://developer.chrome.com/docs/extensions/reference/declarativeNetRequest/) to block script, XHR from certain ad or sponsored content serving urls e.g. google ads, pubmatic, microsoft ads, taboola, outbrain, etc..
