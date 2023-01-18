@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "No Ads",
-    "description": "Simple Ad blocker to block display ads",
+    "description": "Simple Ad blocker to block display ads, it's safe, no tracking, no data collection",
     "version": "0.0.1",
     "declarative_net_request": {
       "rule_resources": [{
