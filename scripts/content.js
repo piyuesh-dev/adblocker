@@ -9,7 +9,7 @@ let adLabelObj = {
 };
 // don't run our script on below domains just not to effect their functionality...
 let whitelistDomains = [
-    "google.com",
+    "google",
     "youtube",
     "vimeo",
     "instagram",
@@ -19,9 +19,9 @@ let whitelistDomains = [
     "bitbucket",
     "azure",
     "atlassian",
-    "amazon.com",
-    "flipkart.com",
-    "walmart.com",
+    "amazon",
+    "flipkart",
+    "walmart",
 ];
 let scriptEnable = true;
 
@@ -58,6 +58,7 @@ findAllEmptyAdDivs = (rootEl) => {
             div[data-adcode],
             div[id*="gpt_ad"],
             div[id*="div-gpt-ad"],
+            div[id*="ad-slot"],
             display-ads,
             views-native-ad
             `)
@@ -175,6 +176,9 @@ function addStyleSheetAds() {
     div[id^="gpt_ad"] {
         display: none;
     }
+    div[id*="ad-slot"] {
+        display:none !important;
+    }
     div[id*="div-gpt-ad"] {
         display: none;
     }
@@ -199,7 +203,6 @@ function addStyleSheetAds() {
 
 // We need to listen to some events when top url changes while scrolling down...
 // Select the node that will be observed for mutations
-const targetNode = document.body;
 let oldHref = document.location.href;
 
 // Options for the observer (which mutations to observe)
@@ -207,7 +210,6 @@ const config = { attributes: false, childList: true, subtree: true };
 
 // Callback function to execute when mutations are observed
 const callback = (mutationList, observer) => {
-  for (const mutation of mutationList) {
     // When top url changes, e.g. on news sites upon scrolling top url reflects the article being read...
     // we need to re-run all process again to hide ads divs...
     if (oldHref != document.location.href) {
@@ -217,16 +219,7 @@ const callback = (mutationList, observer) => {
         } catch (ex) {
             // do nothing....
         }
-        break;
     }
-    if (mutation.type === 'childList') {
-      if(mutation.addedNodes && mutation.addedNodes.length) {
-        // nothing...
-      }
-    } else if (mutation.type === 'attributes') {
-    //   console.log(`The ${mutation.attributeName} attribute was modified.`);
-    }
-  }
 };
 
 if(scriptEnable) {
@@ -234,10 +227,14 @@ if(scriptEnable) {
     const observer = new MutationObserver(callback);
 
     setTimeout(() => {
-        addStyleSheetAds();
-        findAllEmptyAdDivs(document);
+        try {
+            addStyleSheetAds();
+            findAllEmptyAdDivs(document);    
+        } catch (ex) {
+            // do nothing...
+        }
         // Start observing the target node for configured mutations
-        observer.observe(targetNode, config);
+        observer.observe(document, config);
     }, 300);
 
     // Later, you can stop observing
