@@ -100,5 +100,23 @@
         "priority": 1,
         "action": { "type": "block" },
         "condition": {"urlFilter": "libs_ad-service_dist_NativeAdService_js", "resourceTypes": ["sub_frame","script","xmlhttprequest","media"] }
+    },
+    {
+        "id": 18,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {"urlFilter": "liadm.com", "resourceTypes": ["sub_frame","script","xmlhttprequest","media"] }
+    },
+    {
+        "id": 19,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {"urlFilter": "criteo.com", "resourceTypes": ["sub_frame","script","xmlhttprequest","media"] }
+    },
+    {
+        "id": 20,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {"urlFilter": "criteo.net", "resourceTypes": ["sub_frame","script","xmlhttprequest","media"] }
     }
 ]

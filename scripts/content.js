@@ -10,7 +10,6 @@ let adLabelObj = {
 // don't run our script on below domains just not to effect their functionality...
 let whitelistDomains = [
     "google",
-    "youtube",
     "vimeo",
     "instagram",
     "facebook",
@@ -46,7 +45,6 @@ findAllEmptyAdDivs = (rootEl) => {
 
         return ((val1 in adLabelObj) || (val2 in adLabelObj) || (val3 in adLabelObj));
     });
-    // console.dir(allAfterBeforeDivs);
     // find divs with data-ad-slot or data-ad-unit, etc...hide them....
     allAfterBeforeDivs = allAfterBeforeDivs.concat(Array.from(
         rootEl.querySelectorAll(`
@@ -59,6 +57,13 @@ findAllEmptyAdDivs = (rootEl) => {
             div[id*="gpt_ad"],
             div[id*="div-gpt-ad"],
             div[id*="ad-slot"],
+            div[id*="adslot"],
+            div[class*="adHeight"],
+            div[class*="adWidth"],
+            .adunitContainer,
+            .adBox,
+            .ad-container,
+            .dotcom-ad,
             display-ads,
             views-native-ad
             `)
@@ -96,8 +101,8 @@ findAllEmptyAdDivs = (rootEl) => {
 // try to grep window.innerHTML for googletag.defineSlot or googletag.display
 // find div ids for ads rendering and hide all those divs..
 function findAdDivsAsPerRegex(htmlString) {
-    let regexAds1 = /defineSlot\(.*?('|")([^'"]*)('|")\)/g;
-    let regexAds2 = /(googletag|gpt).display\(['"]{1}(.*?)['"]{1}\)/g;
+    let regexAds1 = /defineSlot\(.*?('|")([^'"]*)('|")\)/gi;
+    let regexAds2 = /(googletag|gpt).display\(['"]{1}(.*?)['"]{1}\)/gi;
     let anySlots = []; // for regex matches...both regex has group2 as div id...
     let foundDivs = [];
 
@@ -170,8 +175,11 @@ function findOnlyTextChildParent(childEl) {
 function addStyleSheetAds() {
     var style = document.createElement('style');
     style.innerHTML = `
-    #target {
-    color: blueviolet;
+    #player-ads {
+        display:none !important;
+    }
+    .ad-container, .dotcom-ad, .adunitContainer, .adBox {
+        display:none !important;
     }
     div[id^="gpt_ad"] {
         display: none;
@@ -197,8 +205,48 @@ function addStyleSheetAds() {
     div[data-ad-slot] {
         display:none !important;
     }
+    div[id*="adslot"] {
+        display:none !important;
+    }
+    div[class*="adHeight"] {
+        display:none !important;
+    }
+    div[class*="adWidth"]{
+        display:none !important;
+    }
     `;
     document.head.appendChild(style);  
+}
+
+/**
+ * It hides/skips youtube ads as soon as they show up,
+ * solution found at https://stackoverflow.com/a/58933059/1331003
+ */
+hideYoutubeAds = () => {
+    var count = 0;
+    // counter is added, when there are 2 ads back to back....so that we can hide 2nd one also...
+    var counterFun = setInterval(() => {
+        if (count >= 5) {
+            clearInterval(counterFun);
+        }
+        const ad = document.querySelector('.html5-video-player.ad-created.ad-showing');
+        if (ad) {
+            const video = ad.querySelector('video');
+            // skip video to end of it's duration...or click on skip if available...
+            if (video) {
+                let skipButton = ad.querySelector("button.ytp-ad-skip-button");
+                // console.log("time is-------------",video.currentTime);
+                // console.log("duration is-------------",video.duration);
+
+                if (video.duration) {
+                    video.currentTime = video.duration;
+                } else if (skipButton){
+                    skipButton.click();
+                }
+            }
+        }
+        ++count;
+    }, 300);
 }
 
 // We need to listen to some events when top url changes while scrolling down...
@@ -222,20 +270,54 @@ const callback = (mutationList, observer) => {
     }
 };
 
-if(scriptEnable) {
-    // Create an observer instance linked to the callback function
-    const observer = new MutationObserver(callback);
+// Callback function to execute when mutations are observed
+const callbackYt = (mutationList, observer) => {
+    // When youtube video ads div changed, e.g. content added...
+    // we need to re-run function to skip video ads
+    for (const mutation of mutationList) {
+        if (mutation.type === 'childList') {
+            // console.log('A child node has been added or removed.');
+            // find if ads overlay is added...then we can call our function to hide ads...ytp-ad-player-overlay
+            if (mutation.addedNodes && mutation.addedNodes.length) {
+                let videoAdsOverlay = mutation.target.querySelector(".ytp-ad-player-overlay");
 
-    setTimeout(() => {
-        try {
-            addStyleSheetAds();
-            findAllEmptyAdDivs(document);    
-        } catch (ex) {
-            // do nothing...
+                // console.log("found ads overlay..., now hide ads...");
+                videoAdsOverlay ? hideYoutubeAds() : "";
+                break;
+            }
+        } else if (mutation.type === 'attributes') {
+            // console.log(`The ${mutation.attributeName} attribute was modified.`);
         }
-        // Start observing the target node for configured mutations
-        observer.observe(document, config);
-    }, 300);
+    }
+};
+
+if(scriptEnable) {
+    if (location.hostname.indexOf("youtube") != -1) {
+        addStyleSheetAds();
+        var setupObserverInterval = setInterval(() => {
+            let videoAdsDiv = document.querySelector(".video-ads.ytp-ad-module");
+            const observerYt = new MutationObserver(callbackYt);
+
+            if (videoAdsDiv) {
+                clearInterval(setupObserverInterval);
+                observerYt.observe(videoAdsDiv, config);
+                hideYoutubeAds();
+            }
+        },500);
+    } else {
+        // Create an observer instance linked to the callback function
+        const observer = new MutationObserver(callback);
+        setTimeout(() => {
+            try {
+                addStyleSheetAds();
+                findAllEmptyAdDivs(document);    
+            } catch (ex) {
+                // do nothing...
+            }
+            // Start observing the target node for configured mutations
+            observer.observe(document, config);
+        }, 300);
+    }
 
     // Later, you can stop observing
     // observer.disconnect();
