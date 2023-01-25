@@ -60,6 +60,9 @@ findAllEmptyAdDivs = (rootEl) => {
             div[id*="adslot"],
             div[class*="adHeight"],
             div[class*="adWidth"],
+            div[class*="ad-height"],
+            div[class*="ad-width"],
+            div[class*="ad-slot"],
             .adunitContainer,
             .adBox,
             .ad-container,
@@ -153,7 +156,8 @@ function findOnlyTextChildParent(childEl) {
     let child2Text = childNodes[1].innerText && childNodes[1].innerText.toLowerCase();
 
     // or only script nodes...as 2nd child...
-    if (childNodes[0].nodeName.toLowerCase() == "script" || childNodes[1].nodeName.toLowerCase() == "script")
+    if (childNodes[0].nodeName.toLowerCase() == "script" || childNodes[1].nodeName.toLowerCase() == "script" ||
+        childNodes[0].nodeName.toLowerCase() == "br" || childNodes[1].nodeName.toLowerCase() == "br")
         return findTopParent(parentEl);
     
     // only consider innerText value if other child is empty...., else just hide childEl
@@ -208,10 +212,10 @@ function addStyleSheetAds() {
     div[id*="adslot"] {
         display:none !important;
     }
-    div[class*="adHeight"] {
+    div[class*="adHeight"], div[class*="ad-height"] {
         display:none !important;
     }
-    div[class*="adWidth"]{
+    div[class*="adWidth"], div[class*="ad-width"], div[class*="ad-slot"] {
         display:none !important;
     }
     `;
