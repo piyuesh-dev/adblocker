@@ -2,7 +2,7 @@
 Simple Ad blocker to block Google display ads and skips Youtube video ads.
 
 # Skips Youtube video ads
-As soon as a video ad shows up, it tries to skip ads.
+As soon as a video ad shows up, it auto skip them.
 
 # Blocks Google Display Ads
 Defined few rules (https://developer.chrome.com/docs/extensions/reference/declarativeNetRequest/) to block script, XHR from certain ad or sponsored content serving urls e.g. google ads, pubmatic, microsoft ads, taboola, outbrain, etc..
