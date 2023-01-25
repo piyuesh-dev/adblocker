@@ -238,10 +238,10 @@ hideYoutubeAds = () => {
                 // console.log("time is-------------",video.currentTime);
                 // console.log("duration is-------------",video.duration);
 
-                if (video.duration) {
-                    video.currentTime = video.duration;
-                } else if (skipButton){
+                if (skipButton) {
                     skipButton.click();
+                } else if (video.duration) {
+                    video.currentTime = video.duration;
                 }
             }
         }
