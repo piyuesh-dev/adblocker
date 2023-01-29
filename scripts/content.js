@@ -54,6 +54,8 @@ findAllEmptyAdDivs = (rootEl) => {
             div[data-ad-unit],
             div[data-adunit],
             div[data-adcode],
+            div[data-ad-id],
+            div[data-adwidth],
             div[id*="gpt_ad"],
             div[id*="div-gpt-ad"],
             div[id*="ad-slot"],
@@ -206,7 +208,8 @@ function addStyleSheetAds() {
     views-native-ad {
         display:none !important;
     }
-    div[data-ad-slot] {
+    div[data-ad-slot], div[data-ad-id], div[data-adwidth],
+    {
         display:none !important;
     }
     div[id*="adslot"] {
@@ -216,6 +219,10 @@ function addStyleSheetAds() {
         display:none !important;
     }
     div[class*="adWidth"], div[class*="ad-width"], div[class*="ad-slot"] {
+        display:none !important;
+    }
+    /* to hide display ads in youtube videos...*/
+    .html5-video-player .video-ads .ytp-ad-overlay-slot {
         display:none !important;
     }
     `;
@@ -228,11 +235,7 @@ function addStyleSheetAds() {
  */
 hideYoutubeAds = () => {
     var count = 0;
-    // counter is added, when there are 2 ads back to back....so that we can hide 2nd one also...
-    var counterFun = setInterval(() => {
-        if (count >= 5) {
-            clearInterval(counterFun);
-        }
+    var skipAdsVideo = () => {
         const ad = document.querySelector('.html5-video-player.ad-created.ad-showing');
         if (ad) {
             const video = ad.querySelector('video');
@@ -244,13 +247,23 @@ hideYoutubeAds = () => {
 
                 if (skipButton) {
                     skipButton.click();
+                    // console.log(" hiding yt video....1");
                 } else if (video.duration) {
                     video.currentTime = video.duration;
+                    // console.log(" hiding yt video....2");
                 }
             }
         }
+    }
+    // counter is added, when there are 2 ads back to back....so that we can hide 2nd one also...
+    var counterFun = setInterval(() => {
+        if (count >= 5) {
+            clearInterval(counterFun);
+        }
+        skipAdsVideo();
         ++count;
     }, 300);
+    skipAdsVideo();
 }
 
 // We need to listen to some events when top url changes while scrolling down...
@@ -300,16 +313,17 @@ if(scriptEnable) {
         addStyleSheetAds();
         var setupObserverInterval = setInterval(() => {
             let videoAdsDiv = document.querySelector(".video-ads.ytp-ad-module");
-            const observerYt = new MutationObserver(callbackYt);
 
+            // Create an observer to listen for changes on video ads element
             if (videoAdsDiv) {
+                const observerYt = new MutationObserver(callbackYt);
                 clearInterval(setupObserverInterval);
                 observerYt.observe(videoAdsDiv, config);
                 hideYoutubeAds();
             }
-        },500);
+        },200);
     } else {
-        // Create an observer instance linked to the callback function
+        // Create an observer to listen for changes on document element
         const observer = new MutationObserver(callback);
         setTimeout(() => {
             try {
