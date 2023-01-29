@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "No Ads",
     "description": "Simple Ad blocker to auto skip Youtube video ads, block Google display ads.",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "declarative_net_request": {
       "rule_resources": [{
         "id": "ruleset_1",
