@@ -118,5 +118,35 @@
         "priority": 1,
         "action": { "type": "block" },
         "condition": {"urlFilter": "criteo.net", "resourceTypes": ["sub_frame","script","xmlhttprequest","media"] }
+    },
+    {
+        "id": 21,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {"urlFilter": "teads.tv", "resourceTypes": ["sub_frame","script","xmlhttprequest","media"] }
+    },
+    {
+        "id": 22,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {"urlFilter": "jac.yahoosandbox.com", "resourceTypes": ["sub_frame","script","xmlhttprequest","media"] }
+    },
+    {
+        "id": 23,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {"urlFilter": "adgebra.co.in", "resourceTypes": ["sub_frame","script","xmlhttprequest","media"] }
+    },
+    {
+        "id": 24,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {"urlFilter": "go.automatad.com", "resourceTypes": ["sub_frame","script","xmlhttprequest","media"] }
+    },
+    {
+        "id": 25,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {"urlFilter": "ad.vidverto.io", "resourceTypes": ["sub_frame","script","xmlhttprequest","media"] }
     }
 ]

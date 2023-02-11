@@ -65,6 +65,7 @@ findAllEmptyAdDivs = (rootEl) => {
             div[class*="ad-height"],
             div[class*="ad-width"],
             div[class*="ad-slot"],
+            div[class*="ad-unit"],
             .adunitContainer,
             .adBox,
             .ad-container,
@@ -215,7 +216,7 @@ function addStyleSheetAds() {
     div[id*="adslot"] {
         display:none !important;
     }
-    div[class*="adHeight"], div[class*="ad-height"] {
+    div[class*="adHeight"], div[class*="ad-height"], div[class*="ad-unit"] {
         display:none !important;
     }
     div[class*="adWidth"], div[class*="ad-width"], div[class*="ad-slot"] {
