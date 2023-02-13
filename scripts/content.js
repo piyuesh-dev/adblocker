@@ -1,4 +1,3 @@
-let possibleAdsLabel = ["advertisement", "ad", "ads"];
 let adLabelObj = {
     "advertisement":1,
     "\"advertisement\"":1,
@@ -62,10 +61,14 @@ findAllEmptyAdDivs = (rootEl) => {
             div[id*="adslot"],
             div[class*="adHeight"],
             div[class*="adWidth"],
+            div[class*="adMinHeight"],
+            div[class*="adMinWidth"],
+            div[class*="adBlock"],
             div[class*="ad-height"],
             div[class*="ad-width"],
             div[class*="ad-slot"],
             div[class*="ad-unit"],
+            ins[class="adsbygoogle"],
             .adunitContainer,
             .adBox,
             .ad-container,
@@ -107,8 +110,8 @@ findAllEmptyAdDivs = (rootEl) => {
 // try to grep window.innerHTML for googletag.defineSlot or googletag.display
 // find div ids for ads rendering and hide all those divs..
 function findAdDivsAsPerRegex(htmlString) {
-    let regexAds1 = /defineSlot\(.*?('|")([^'"]*)('|")\)/gi;
-    let regexAds2 = /(googletag|gpt).display\(['"]{1}(.*?)['"]{1}\)/gi;
+    let regexAds1 = /defineSlot\(.*?('|")([^'"]*)('|")\)/gmi;
+    let regexAds2 = /(googletag|gpt).display\(['"]{1}(.*?)['"]{1}\)/gmi;
     let anySlots = []; // for regex matches...both regex has group2 as div id...
     let foundDivs = [];
 
@@ -130,7 +133,7 @@ function findAdDivsAsPerRegex(htmlString) {
     return foundDivs;
 }
 
-// find top most parent of iframe which has no other child...or only a script or text child...
+// find top most parent of an ads div which has no other child...or only some script or text nodes as siblings...
 function findTopParent(childEl) {
     let parentEl = null;
 
@@ -140,10 +143,8 @@ function findTopParent(childEl) {
         if (parentEl && parentEl.children) {
             if (parentEl.children.length == 1) {
                 return findTopParent(parentEl);
-            } else if (parentEl.children.length == 2) {
-                return findOnlyTextChildParent(childEl);
-            } else if (parentEl.children.length > 2) {
-                return childEl;
+            } else {
+                return findOnlyScriptNodesParent(childEl);
             }
         }
     }
@@ -151,25 +152,30 @@ function findTopParent(childEl) {
     return parentEl;
 }
 
-// to handle cases for display ads where "Advertisement"|"Ad"|"Ads" is only one node above/below actual google ad..
-function findOnlyTextChildParent(childEl) {
+// check if only other sibling of an ads div are br or script tags, or only div with 'ad', 'ads' text....
+function findOnlyScriptNodesParent(childEl) {
     let parentEl = childEl.parentElement;
     let childNodes = parentEl.children;
-    let child1Text = childNodes[0].innerText && childNodes[0].innerText.toLowerCase();
-    let child2Text = childNodes[1].innerText && childNodes[1].innerText.toLowerCase();
+    let needToFindParent = true;
 
-    // or only script nodes...as 2nd child...
-    if (childNodes[0].nodeName.toLowerCase() == "script" || childNodes[1].nodeName.toLowerCase() == "script" ||
-        childNodes[0].nodeName.toLowerCase() == "br" || childNodes[1].nodeName.toLowerCase() == "br")
-        return findTopParent(parentEl);
-    
-    // only consider innerText value if other child is empty...., else just hide childEl
-    // so that we don't hide any valid non-ad content from html
-    let needToFindParent = possibleAdsLabel.find((element) => {
-        return ((element==child1Text && child2Text=="")
-                || (element==child2Text && child1Text==""));
-    });
-    if(needToFindParent) {
+    // check if only other sibling of an ads div are br or script tags, or only div with 'ad'. 'ads' text....
+    // then keep looking its parents....
+    for(let x=0; x<childNodes.length && needToFindParent; ++x) {
+        let nodeName = childNodes[x].nodeName ? childNodes[x].nodeName.toLowerCase() : "";
+        let childText = childNodes[x].innerText && childNodes[x].innerText.toLowerCase();
+        let childHtml = childNodes[x].innerHTML;
+
+        if (childNodes[x] == childEl || nodeName.match(/script|br/)) {
+            needToFindParent = true;
+        } 
+        else if (childHtml == "" && (childText == "" || childText in adLabelObj)) {
+            needToFindParent = true;
+        }
+        else {
+            needToFindParent = false;
+        }
+    }
+    if (needToFindParent) {
         return findTopParent(parentEl);
     } else {
         return childEl;
@@ -216,10 +222,10 @@ function addStyleSheetAds() {
     div[id*="adslot"] {
         display:none !important;
     }
-    div[class*="adHeight"], div[class*="ad-height"], div[class*="ad-unit"] {
+    div[class*="adHeight"], div[class*="ad-height"], div[class*="ad-unit"], div[class*="adMinHeight"], div[class*="adBlock"] {
         display:none !important;
     }
-    div[class*="adWidth"], div[class*="ad-width"], div[class*="ad-slot"] {
+    div[class*="adWidth"], div[class*="ad-width"], div[class*="ad-slot"], div[class*="adMinWidth"] {
         display:none !important;
     }
     /* to hide display ads in youtube videos...*/
@@ -335,7 +341,7 @@ if(scriptEnable) {
             }
             // Start observing the target node for configured mutations
             observer.observe(document, config);
-        }, 300);
+        }, 500);
     }
 
     // Later, you can stop observing
