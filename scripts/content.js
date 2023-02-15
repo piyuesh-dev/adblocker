@@ -215,7 +215,7 @@ function addStyleSheetAds() {
     views-native-ad {
         display:none !important;
     }
-    div[data-ad-slot], div[data-ad-id], div[data-adwidth],
+    div[data-ad-slot], div[data-ad-id], div[data-adwidth]
     {
         display:none !important;
     }
@@ -316,8 +316,8 @@ const callbackYt = (mutationList, observer) => {
 };
 
 if(scriptEnable) {
+    addStyleSheetAds();
     if (location.hostname.indexOf("youtube") != -1) {
-        addStyleSheetAds();
         var setupObserverInterval = setInterval(() => {
             let videoAdsDiv = document.querySelector(".video-ads.ytp-ad-module");
 
@@ -334,7 +334,6 @@ if(scriptEnable) {
         const observer = new MutationObserver(callback);
         setTimeout(() => {
             try {
-                addStyleSheetAds();
                 findAllEmptyAdDivs(document);    
             } catch (ex) {
                 // do nothing...
