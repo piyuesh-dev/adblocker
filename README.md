@@ -1,5 +1,7 @@
 # No Ads
-Simple Ad blocker to block Display ads, Trackers and auto skip Youtube video ads.
+Simple Ad blocker to block Display ads, trackers and auto skip Youtube video ads.
+
+Surf web faster and without distraction.
 
 ### Chrome Extension
 https://chrome.google.com/webstore/detail/no-ads/nhoimkephmfpfakaopdjheigigmfefge
