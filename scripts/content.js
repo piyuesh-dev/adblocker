@@ -8,7 +8,6 @@ let adLabelObj = {
 };
 // don't run our script on below domains just not to effect their functionality...
 let whitelistDomains = [
-    "google",
     "vimeo",
     "instagram",
     "facebook",
@@ -273,6 +272,19 @@ hideYoutubeAds = () => {
     skipAdsVideo();
 }
 
+/**
+ * This method hides ads from gmail mail listing div....
+ */
+hideGmailAds = () => {
+    const adSpanArr = Array.from(document.querySelectorAll('.aPd > .ast'));
+
+    adSpanArr.forEach((item, index) => {
+        if (item && item.innerText == "Ad") {
+            item.closest("tr").style = "display: none!important";
+        }
+    });
+}
+
 // We need to listen to some events when top url changes while scrolling down...
 // Select the node that will be observed for mutations
 let oldHref = document.location.href;
@@ -315,21 +327,55 @@ const callbackYt = (mutationList, observer) => {
     }
 };
 
+// Callback function to execute when mutations are observed
+const callbackGmail = (mutationList, observer) => {
+    // When youtube video ads div changed, e.g. content added...
+    // we need to re-run function to skip video ads
+    for (const mutation of mutationList) {
+        if (mutation.type === 'childList') {
+            // console.log('A child node has been added or removed.');
+            // find if ads overlay is added...then we can call our function to hide ads...ytp-ad-player-overlay
+            if (mutation.addedNodes && mutation.addedNodes.length) {
+                hideGmailAds();
+                break;
+            }
+        } else if (mutation.type === 'attributes') {
+            hideGmailAds();
+            break;
+            // console.log(`The ${mutation.attributeName} attribute was modified.`);
+        }
+    }
+};
+
 if(scriptEnable) {
     addStyleSheetAds();
     if (location.hostname.indexOf("youtube") != -1) {
-        var setupObserverInterval = setInterval(() => {
+        var setupObserverInterval1 = setInterval(() => {
             let videoAdsDiv = document.querySelector(".video-ads.ytp-ad-module");
 
             // Create an observer to listen for changes on video ads element
             if (videoAdsDiv) {
                 const observerYt = new MutationObserver(callbackYt);
-                clearInterval(setupObserverInterval);
+                clearInterval(setupObserverInterval1);
                 observerYt.observe(videoAdsDiv, config);
                 hideYoutubeAds();
             }
         },200);
-    } else {
+    } else if (location.hostname.indexOf("mail.google.com") != -1) {
+        // Create an observer to listen for changes on main container in gmail, it rendered after some time...
+        var setupObserverInterval2 = setInterval(() => {
+            let mailDiv = document.querySelector("div.UI");
+
+            // Create an observer to listen for changes on gmail main container element
+            if (mailDiv) {
+                const observerGmail = new MutationObserver(callbackGmail);
+                clearInterval(setupObserverInterval2);
+                observerGmail.observe(mailDiv, config);
+                hideGmailAds();
+            }
+        },200);
+    }
+    else {
         // Create an observer to listen for changes on document element
         const observer = new MutationObserver(callback);
         setTimeout(() => {

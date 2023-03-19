@@ -219,7 +219,7 @@
         "id": 37,
         "priority": 1,
         "action": { "type": "block" },
-        "condition": {"urlFilter": "cdn.mxpnl.com", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
+        "condition": {"urlFilter": "https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
     },
     {
         "id": 38,
@@ -238,5 +238,53 @@
         "priority": 1,
         "action": { "type": "block" },
         "condition": {"urlFilter": "js.hs-scripts.com/", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
+    },
+    {
+        "id": 41,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {"urlFilter": "apis.kostprice.com/", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
+    },
+    {
+        "id": 42,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {"urlFilter": "delivery.adrecover.com", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
+    },
+    {
+        "id": 43,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {"urlFilter": "https://cdn.heapanalytics.com/js/", "resourceTypes": ["sub_frame","script"] }
+    },
+    {
+        "id": 44,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {"urlFilter": "https://edge.staging.fullstory.com/s/fs.js", "resourceTypes": ["sub_frame","script"] }
+    },
+    {
+        "id": 45,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {"urlFilter": "https://script.crazyegg.com/pages/scripts/", "resourceTypes": ["sub_frame","script"] }
+    },
+    {
+        "id": 46,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {"urlFilter": "https://ssl.luckyorange.com/w.js", "resourceTypes": ["sub_frame","script"] }
+    },
+    {
+        "id": 47,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {"urlFilter": "https://cdn.inspectlet.com/inspectlet.js", "resourceTypes": ["sub_frame","script"] }
+    },
+    {
+        "id": 48,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {"urlFilter": "https://cdn.gadgets360.com/pricee/assets/affiliate/js", "resourceTypes": ["sub_frame","script"] }
     }
 ]
