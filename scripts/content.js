@@ -361,7 +361,7 @@ if(scriptEnable) {
                 hideYoutubeAds();
             }
         },200);
-    } else if (location.hostname.indexOf("mail.google.com") != -1) {
+    } else if (location.hostname === "mail.google.com") {
         // Create an observer to listen for changes on main container in gmail, it rendered after some time...
         var setupObserverInterval2 = setInterval(() => {
             let mailDiv = document.querySelector("div.UI");
