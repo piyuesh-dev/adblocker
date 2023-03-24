@@ -286,5 +286,29 @@
         "priority": 1,
         "action": { "type": "block" },
         "condition": {"urlFilter": "https://cdn.gadgets360.com/pricee/assets/affiliate/js", "resourceTypes": ["sub_frame","script"] }
+    },
+    {
+        "id": 49,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {"urlFilter": "adsafeprotected.com", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
+    },
+    {
+        "id": 50,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {"urlFilter": "moatads.com", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
+    },
+    {
+        "id": 51,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {"urlFilter": "https://d2r1yp2w7bby2u.cloudfront.net/js/clevertap.min.js", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
+    },
+    {
+        "id": 52,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {"regexFilter": "https://cdn\\.ampproject\\.org\\/.*amp-ad.*", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
     }
 ]

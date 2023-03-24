@@ -58,6 +58,7 @@ findAllEmptyAdDivs = (rootEl) => {
             div[id*="div-gpt-ad"],
             div[id*="ad-slot"],
             div[id*="adslot"],
+            div[data-testid="StandardAd"],
             div[class*="adHeight"],
             div[class*="adWidth"],
             div[class*="adMinHeight"],
@@ -68,9 +69,13 @@ findAllEmptyAdDivs = (rootEl) => {
             div[class*="ad-slot"],
             div[class*="ad-unit"],
             ins[class="adsbygoogle"],
+            amp-embed[type="taboola"],
+            amp-ad,
             .adunitContainer,
             .adBox,
             .ad-container,
+            .ad_container,
+            .amp-ad,
             .dotcom-ad,
             display-ads,
             views-native-ad
@@ -190,7 +195,7 @@ function addStyleSheetAds() {
     #player-ads {
         display:none !important;
     }
-    .ad-container, .dotcom-ad, .adunitContainer, .adBox {
+    .ad-container, .dotcom-ad, .adunitContainer, .adBox, .ad_container, .amp-ad {
         display:none !important;
     }
     div[id^="gpt_ad"] {
@@ -202,10 +207,11 @@ function addStyleSheetAds() {
     div[id*="div-gpt-ad"] {
         display: none;
     }
-    .ad-slot, .adSlot {
+    .ad-slot, .adSlot, amp-ad, div[data-testid="StandardAd"] {
         display:none !important;
     }
-    ins[class="adsbygoogle"] {
+    ins[class="adsbygoogle"], amp-embed[type="taboola"]
+    {
         display:none !important;
     }
     display-ads {
