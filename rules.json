@@ -310,5 +310,11 @@
         "priority": 1,
         "action": { "type": "block" },
         "condition": {"regexFilter": "https://cdn\\.ampproject\\.org\\/.*amp-ad.*", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
+    },
+    {
+        "id": 53,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {"urlFilter": "https://m.servedby-buysellads.com/monetization.js", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
     }
 ]
