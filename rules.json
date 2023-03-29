@@ -219,13 +219,13 @@
         "id": 37,
         "priority": 1,
         "action": { "type": "block" },
-        "condition": {"urlFilter": "https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
+        "condition": {"regexFilter": "cdn.*mxpnl.com/libs/mixpanel-2-latest.min.js|sc.lfeeder.com", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
     },
     {
         "id": 38,
         "priority": 1,
         "action": { "type": "block" },
-        "condition": {"urlFilter": "t.contentsquare.net", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
+        "condition": {"regexFilter": "t.contentsquare.net|snap.licdn.com/li.lms-analytics/insight.min.js", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
     },
     {
         "id": 39,
@@ -237,7 +237,7 @@
         "id": 40,
         "priority": 1,
         "action": { "type": "block" },
-        "condition": {"urlFilter": "js.hs-scripts.com/", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
+        "condition": {"regexFilter": "js.hscollectedforms.net|js.hsleadflows.net|js.hs-banner.com|js.hs-scripts.com|js.hs-analytics.net|hsadspixel.net", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
     },
     {
         "id": 41,
@@ -291,13 +291,13 @@
         "id": 49,
         "priority": 1,
         "action": { "type": "block" },
-        "condition": {"urlFilter": "adsafeprotected.com", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
+        "condition": {"regexFilter": "adsafeprotected.com|scorecardresearch.com|rtbcdn.andbeyond.media|analytics.htmedia.in", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
     },
     {
         "id": 50,
         "priority": 1,
         "action": { "type": "block" },
-        "condition": {"urlFilter": "moatads.com", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
+        "condition": {"regexFilter": "code.piano.io|moatads.com|crwdcntrl.net|js-agent.newrelic.com|static.growthrx.in", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
     },
     {
         "id": 51,
@@ -316,5 +316,35 @@
         "priority": 1,
         "action": { "type": "block" },
         "condition": {"urlFilter": "https://m.servedby-buysellads.com/monetization.js", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
+    },
+    {
+        "id": 54,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {"urlFilter": "https://cdn.izooto.com/scripts/sdk/izooto.js", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
+    },
+    {
+        "id": 55,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {"urlFilter": "https://imasdk.googleapis.com/js/sdkloader/ima3.js", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
+    },
+    {
+        "id": 56,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {"regexFilter": "bat.bing.com/bat.js|web.webpushs.com|api.amplitude.com|cdn.amplitude.com/libs", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
+    },
+    {
+        "id": 57,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {"urlFilter": "https://notix.io/ent/current/enot.min.js", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
+    },
+    {
+        "id": 58,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {"regexFilter": "cdn.moengage.com|cdn.onesignal.com|widgets.*webengage.com|cdn.pushowl.com/sdks", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
     }
 ]

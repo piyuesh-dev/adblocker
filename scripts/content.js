@@ -210,6 +210,10 @@ function addStyleSheetAds() {
     .ad-slot, .adSlot, amp-ad, div[data-testid="StandardAd"] {
         display:none !important;
     }
+    /* hide ads on amazon store */
+    div[data-asin].AdHolder, span[data-video-type="sponsored"], .amzn-safe-frame-container, div[data-ad-details] {
+        display:none !important;
+    }
     ins[class="adsbygoogle"], amp-embed[type="taboola"]
     {
         display:none !important;
@@ -353,8 +357,8 @@ const callbackGmail = (mutationList, observer) => {
     }
 };
 
+addStyleSheetAds();
 if(scriptEnable) {
-    addStyleSheetAds();
     if (location.hostname.indexOf("youtube") != -1) {
         var setupObserverInterval1 = setInterval(() => {
             let videoAdsDiv = document.querySelector(".video-ads.ytp-ad-module");
