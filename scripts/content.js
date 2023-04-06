@@ -50,6 +50,7 @@ findAllEmptyAdDivs = (rootEl) => {
             div[data-adsslot],
             div[data-adslot],
             div[data-ad-unit],
+            div[data-ad-unit-path],
             div[data-adunit],
             div[data-adcode],
             div[data-ad-id],
@@ -68,6 +69,7 @@ findAllEmptyAdDivs = (rootEl) => {
             div[class*="ad-width"],
             div[class*="ad-slot"],
             div[class*="ad-unit"],
+            div[id*="taboola"],
             ins[class="adsbygoogle"],
             amp-embed[type="taboola"],
             amp-ad,
@@ -75,6 +77,9 @@ findAllEmptyAdDivs = (rootEl) => {
             .adBox,
             .ad-container,
             .ad_container,
+            .ads__container,
+            .ad-text,
+            .text-ad,
             .amp-ad,
             .dotcom-ad,
             display-ads,
@@ -195,7 +200,7 @@ function addStyleSheetAds() {
     #player-ads {
         display:none !important;
     }
-    .ad-container, .dotcom-ad, .adunitContainer, .adBox, .ad_container, .amp-ad {
+    .ad-container, .dotcom-ad, .adunitContainer, .adBox, .ad_container, .ads__container, .amp-ad, .ad-text, .text-ad {
         display:none !important;
     }
     div[id^="gpt_ad"] {
@@ -214,7 +219,7 @@ function addStyleSheetAds() {
     div[data-asin].AdHolder, span[data-video-type="sponsored"], .amzn-safe-frame-container, div[data-ad-details] {
         display:none !important;
     }
-    ins[class="adsbygoogle"], amp-embed[type="taboola"]
+    ins[class="adsbygoogle"], amp-embed[type="taboola"], div[id*="taboola"]
     {
         display:none !important;
     }
@@ -224,7 +229,7 @@ function addStyleSheetAds() {
     views-native-ad {
         display:none !important;
     }
-    div[data-ad-slot], div[data-ad-id], div[data-adwidth]
+    div[data-ad-slot], div[data-ad-id], div[data-adwidth], div[data-ad-unit-path]
     {
         display:none !important;
     }
