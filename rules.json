@@ -21,7 +21,7 @@
         "id": 4,
         "priority": 1,
         "action": { "type": "block" },
-        "condition": { "urlFilter": "pubmatic", "resourceTypes": ["script","sub_frame","xmlhttprequest"] }
+        "condition": { "urlFilter": "ads.pubmatic.com", "resourceTypes": ["script","sub_frame","xmlhttprequest"] }
     },
     {
         "id": 5,
@@ -33,7 +33,7 @@
         "id": 6,
         "priority": 1,
         "action": { "type": "block" },
-        "condition": {"urlFilter": "fireworktv", "resourceTypes": ["sub_frame","script"] }
+        "condition": {"urlFilter": "fireworktv", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
     },
     {
         "id": 7,
@@ -51,13 +51,13 @@
         "id": 9,
         "priority": 1,
         "action": { "type": "block" },
-        "condition": {"urlFilter": "amazon-adsystem", "resourceTypes": ["sub_frame","script"] }
+        "condition": {"regexFilter": "amazon-adsystem|widgets.outbrain.com|cdn.cxense.com", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
     },
     {
         "id": 10,
         "priority": 1,
         "action": { "type": "block" },
-        "condition": {"urlFilter": "outbrain*.com", "resourceTypes": ["sub_frame","script"] }
+        "condition": {"regexFilter": "www.dianomi.com|secure.quantserve.com|rules.quantcount.com", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
     },
     {
         "id": 11,
@@ -69,7 +69,7 @@
         "id": 12,
         "priority": 1,
         "action": { "type": "block" },
-        "condition": {"urlFilter": "mgid.com", "resourceTypes": ["sub_frame","script","xmlhttprequest","media"] }
+        "condition": {"regexFilter": "mgid.com|cdn.pushwoosh.com|rubiconproject.com|cdn.spot.im|launcher.spot.im", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
     },
     {
         "id": 13,
@@ -87,7 +87,7 @@
         "id": 15,
         "priority": 1,
         "action": { "type": "block" },
-        "condition": {"urlFilter": "vukkle.com", "resourceTypes": ["sub_frame","script","xmlhttprequest","media"] }
+        "condition": {"urlFilter": "vuukle.com", "resourceTypes": ["sub_frame","script","xmlhttprequest","media"] }
     },
     {
         "id": 16,
@@ -321,7 +321,7 @@
         "id": 54,
         "priority": 1,
         "action": { "type": "block" },
-        "condition": {"urlFilter": "https://cdn.izooto.com/scripts/sdk/izooto.js", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
+        "condition": {"urlFilter": "https://cdn.izooto.com/scripts/", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
     },
     {
         "id": 55,

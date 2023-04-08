@@ -81,6 +81,9 @@ findAllEmptyAdDivs = (rootEl) => {
             .ad-text,
             .text-ad,
             .amp-ad,
+            .advertisement,
+            .dom_annotate_multifeed_bundle_AdBundle,
+            .dom_annotate_ad_image_ad,
             .dotcom-ad,
             display-ads,
             views-native-ad
@@ -209,8 +212,8 @@ function addStyleSheetAds() {
     div[id*="ad-slot"] {
         display:none !important;
     }
-    div[id*="div-gpt-ad"] {
-        display: none;
+    div[id*="div-gpt-ad"], .advertisement {
+        display:none !important;
     }
     .ad-slot, .adSlot, amp-ad, div[data-testid="StandardAd"] {
         display:none !important;
@@ -219,7 +222,7 @@ function addStyleSheetAds() {
     div[data-asin].AdHolder, span[data-video-type="sponsored"], .amzn-safe-frame-container, div[data-ad-details] {
         display:none !important;
     }
-    ins[class="adsbygoogle"], amp-embed[type="taboola"], div[id*="taboola"]
+    ins[class="adsbygoogle"], amp-embed[type="taboola"], div[id*="taboola"], .dom_annotate_multifeed_bundle_AdBundle, .dom_annotate_ad_image_ad
     {
         display:none !important;
     }
