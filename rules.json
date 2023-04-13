@@ -51,7 +51,7 @@
         "id": 9,
         "priority": 1,
         "action": { "type": "block" },
-        "condition": {"regexFilter": "amazon-adsystem|widgets.outbrain.com|cdn.cxense.com", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
+        "condition": {"regexFilter": "amazon-adsystem|widgets.outbrain.com", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
     },
     {
         "id": 10,

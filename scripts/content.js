@@ -79,6 +79,7 @@ findAllEmptyAdDivs = (rootEl) => {
             .ad_container,
             .ads__container,
             .ad-text,
+            .bbccom_advert,
             .text-ad,
             .amp-ad,
             .advertisement,
@@ -212,7 +213,7 @@ function addStyleSheetAds() {
     div[id*="ad-slot"] {
         display:none !important;
     }
-    div[id*="div-gpt-ad"], .advertisement {
+    div[id*="div-gpt-ad"], .advertisement, .bbccom_advert {
         display:none !important;
     }
     .ad-slot, .adSlot, amp-ad, div[data-testid="StandardAd"] {
