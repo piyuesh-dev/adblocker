@@ -291,7 +291,7 @@
         "id": 49,
         "priority": 1,
         "action": { "type": "block" },
-        "condition": {"regexFilter": "adsafeprotected.com|scorecardresearch.com|rtbcdn.andbeyond.media|analytics.htmedia.in", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
+        "condition": {"regexFilter": "adsafeprotected.com|scorecardresearch.com|rtbcdn.andbeyond.media|analytics.htmedia.in", "resourceTypes": ["sub_frame","script","xmlhttprequest","media"] }
     },
     {
         "id": 50,
@@ -351,6 +351,12 @@
         "id": 59,
         "priority": 1,
         "action": { "type": "block" },
-        "condition": {"regexFilter": "id.tinypass.com|buy.tinypass.com|api.tinypass.com|cse.google.com/adsense/", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
+        "condition": {"regexFilter": "sascdn.com|id.tinypass.com|buy.tinypass.com|api.tinypass.com|cse.google.com/adsense/", "resourceTypes": ["sub_frame","script","xmlhttprequest","media"] }
+    },
+    {
+        "id": 60,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {"regexFilter": "smartadserver.com|tags.tiqcdn.com|cdn.speedcurve.com|imrworldwide.com", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
     }
 ]

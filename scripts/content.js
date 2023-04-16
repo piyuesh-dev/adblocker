@@ -55,6 +55,11 @@ findAllEmptyAdDivs = (rootEl) => {
             div[data-adcode],
             div[data-ad-id],
             div[data-adwidth],
+            div[data-ad],
+            div[data-ad-format],
+            div[data-ad-size],
+            div[data-dfp-mobile],
+            div[data-ads-core],
             div[id*="gpt_ad"],
             div[id*="div-gpt-ad"],
             div[id*="ad-slot"],
@@ -69,6 +74,7 @@ findAllEmptyAdDivs = (rootEl) => {
             div[class*="ad-width"],
             div[class*="ad-slot"],
             div[class*="ad-unit"],
+            div[class*="ad-container"],
             div[id*="taboola"],
             ins[class="adsbygoogle"],
             amp-embed[type="taboola"],
@@ -80,6 +86,12 @@ findAllEmptyAdDivs = (rootEl) => {
             .ads__container,
             .ad-text,
             .bbccom_advert,
+            .dfp-ad,
+            .dfp-slot,
+            .fig-ad-content,
+            .display_ad,
+            .m-block-ad,
+            .adWrapper,
             .text-ad,
             .amp-ad,
             .advertisement,
@@ -207,13 +219,14 @@ function addStyleSheetAds() {
     .ad-container, .dotcom-ad, .adunitContainer, .adBox, .ad_container, .ads__container, .amp-ad, .ad-text, .text-ad {
         display:none !important;
     }
-    div[id^="gpt_ad"] {
+    div[id^="gpt_ad"], div[class*="ad-container"]
+    {
         display: none;
     }
     div[id*="ad-slot"] {
         display:none !important;
     }
-    div[id*="div-gpt-ad"], .advertisement, .bbccom_advert {
+    div[id*="div-gpt-ad"], .advertisement, .bbccom_advert, .dfp-ad, .dfp-slot {
         display:none !important;
     }
     .ad-slot, .adSlot, amp-ad, div[data-testid="StandardAd"] {
@@ -227,13 +240,14 @@ function addStyleSheetAds() {
     {
         display:none !important;
     }
-    display-ads {
+    display-ads, display_ad, .m-block-ad, .adWrapper
+    {
         display:none !important;
     }
     views-native-ad {
         display:none !important;
     }
-    div[data-ad-slot], div[data-ad-id], div[data-adwidth], div[data-ad-unit-path]
+    div[data-ad], div[data-ad-slot], div[data-ad-size], div[data-ad-id], div[data-adwidth], div[data-ad-unit-path], div[data-ad-format], div[data-dfp-mobile], div[data-ads-core], .fig-ad-content
     {
         display:none !important;
     }
