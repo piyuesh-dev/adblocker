@@ -92,6 +92,7 @@ findAllEmptyAdDivs = (rootEl) => {
             .display_ad,
             .m-block-ad,
             .adWrapper,
+            .top-ad-wrapper,
             .text-ad,
             .amp-ad,
             .advertisement,
@@ -240,7 +241,7 @@ function addStyleSheetAds() {
     {
         display:none !important;
     }
-    display-ads, display_ad, .m-block-ad, .adWrapper
+    display-ads, display_ad, .m-block-ad, .adWrapper, .top-ad-wrapper
     {
         display:none !important;
     }
@@ -252,6 +253,10 @@ function addStyleSheetAds() {
         display:none !important;
     }
     div[id*="adslot"] {
+        display:none !important;
+    }
+    /* hide that stupid breaking new section on youtube */
+    #dismissible:has(#rich-shelf-header) {
         display:none !important;
     }
     div[class*="adHeight"], div[class*="ad-height"], div[class*="ad-unit"], div[class*="adMinHeight"], div[class*="adBlock"] {

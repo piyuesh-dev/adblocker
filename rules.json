@@ -358,5 +358,11 @@
         "priority": 1,
         "action": { "type": "block" },
         "condition": {"regexFilter": "smartadserver.com|tags.tiqcdn.com|cdn.speedcurve.com|imrworldwide.com", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
+    },
+    {
+        "id": 61,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {"regexFilter": "affinity.com|affinitymatrix.com|newads.rediff.com", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
     }
 ]
