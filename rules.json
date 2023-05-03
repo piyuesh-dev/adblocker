@@ -363,6 +363,6 @@
         "id": 61,
         "priority": 1,
         "action": { "type": "block" },
-        "condition": {"regexFilter": "affinity.com|affinitymatrix.com|newads.rediff.com", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
+        "condition": {"regexFilter": "affinity.com|affinitymatrix.com|newads.rediff.com|bordeaux.futurecdn.net", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
     }
 ]

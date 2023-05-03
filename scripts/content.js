@@ -61,12 +61,16 @@ findAllEmptyAdDivs = (rootEl) => {
             div[data-dfp-mobile],
             div[data-ads-core],
             div[id*="gpt_ad"],
+            div[id*="gpt-ad"],
             div[id*="div-gpt-ad"],
             div[id*="ad-slot"],
             div[id*="adslot"],
+            div[id*="bordeaux-standard-ad"],
             div[data-testid="StandardAd"],
+            div[data-widget-type="ads"],
             div[class*="adHeight"],
             div[class*="adWidth"],
+            div[class*="dfpSlot"],
             div[class*="adMinHeight"],
             div[class*="adMinWidth"],
             div[class*="adBlock"],
@@ -86,8 +90,11 @@ findAllEmptyAdDivs = (rootEl) => {
             .ads__container,
             .ad-text,
             .bbccom_advert,
+            .advert__container,
             .dfp-ad,
             .dfp-slot,
+            .dfp-leaderboard-container,
+            #advertisement-title,
             .fig-ad-content,
             .display_ad,
             .m-block-ad,
@@ -220,17 +227,17 @@ function addStyleSheetAds() {
     .ad-container, .dotcom-ad, .adunitContainer, .adBox, .ad_container, .ads__container, .amp-ad, .ad-text, .text-ad {
         display:none !important;
     }
-    div[id^="gpt_ad"], div[class*="ad-container"]
+    div[id^="gpt_ad"], div[id*="gpt-ad"], div[class*="ad-container"], div[id*="bordeaux-standard-ad"]
     {
         display: none;
     }
-    div[id*="ad-slot"] {
+    div[id*="ad-slot"], .advert__container {
         display:none !important;
     }
-    div[id*="div-gpt-ad"], .advertisement, .bbccom_advert, .dfp-ad, .dfp-slot {
+    div[id*="div-gpt-ad"], .advertisement, .bbccom_advert, .dfp-ad, .dfp-slot, .dfp-leaderboard-container {
         display:none !important;
     }
-    .ad-slot, .adSlot, amp-ad, div[data-testid="StandardAd"] {
+    .ad-slot, .adSlot, amp-ad, div[data-testid="StandardAd"], div[data-widget-type="ads"], div[class*="dfpSlot"], #advertisement-title {
         display:none !important;
     }
     /* hide ads on amazon store */
