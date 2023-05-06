@@ -17,9 +17,6 @@ After that it tries to hide those empty ads container using css, js.
 
 Also hides ads on Amazon store, Gmail.
 
-### Skips Youtube video ads
-As soon as a video ad shows up, it skips them.
-
 ### Block Trackers and Push Notification providers
 Block certain trackers like facebook pixel, hotjar, yandex, mixpanel, clevartap, izooto, notix, google-analytics, etc..
 
