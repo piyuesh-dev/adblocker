@@ -351,7 +351,7 @@
         "id": 59,
         "priority": 1,
         "action": { "type": "block" },
-        "condition": {"regexFilter": "sascdn.com|id.tinypass.com|buy.tinypass.com|api.tinypass.com|cse.google.com/adsense/", "resourceTypes": ["sub_frame","script","xmlhttprequest","media"] }
+        "condition": {"regexFilter": "aaxads.com|sascdn.com|buy.tinypass.com|t8y9347t|cse.google.com/adsense/", "resourceTypes": ["sub_frame","script","xmlhttprequest","media"] }
     },
     {
         "id": 60,

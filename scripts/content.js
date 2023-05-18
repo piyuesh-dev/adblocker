@@ -67,6 +67,10 @@ findAllEmptyAdDivs = (rootEl) => {
             div[id*="adslot"],
             div[id*="bordeaux-standard-ad"],
             div[data-testid="StandardAd"],
+            div[data-testid="top-ad-container-ad"],
+            div[data-testid="ad-container"],
+            div[data-testid*="Ad Container"],
+            div[data-testid*="AdContainer"],
             div[data-widget-type="ads"],
             div[class*="adHeight"],
             div[class*="adWidth"],
@@ -215,71 +219,6 @@ function findOnlyScriptNodesParent(childEl) {
     }
 }
 
-/*
- * Adds css rules to hide known ads container...
-*/
-function addStyleSheetAds() {
-    var style = document.createElement('style');
-    style.innerHTML = `
-    #player-ads {
-        display:none !important;
-    }
-    .ad-container, .dotcom-ad, .adunitContainer, .adBox, .ad_container, .ads__container, .amp-ad, .ad-text, .text-ad {
-        display:none !important;
-    }
-    div[id^="gpt_ad"], div[id*="gpt-ad"], div[class*="ad-container"], div[id*="bordeaux-standard-ad"]
-    {
-        display: none;
-    }
-    div[id*="ad-slot"], .advert__container {
-        display:none !important;
-    }
-    div[id*="div-gpt-ad"], .advertisement, .bbccom_advert, .dfp-ad, .dfp-slot, .dfp-leaderboard-container {
-        display:none !important;
-    }
-    .ad-slot, .adSlot, amp-ad, div[data-testid="StandardAd"], div[data-widget-type="ads"], div[class*="dfpSlot"], #advertisement-title {
-        display:none !important;
-    }
-    /* hide ads on amazon store */
-    div[data-asin].AdHolder, span[data-video-type="sponsored"], .amzn-safe-frame-container, div[data-ad-details] {
-        display:none !important;
-    }
-    ins[class="adsbygoogle"], amp-embed[type="taboola"], div[id*="taboola"], .dom_annotate_multifeed_bundle_AdBundle, .dom_annotate_ad_image_ad
-    {
-        display:none !important;
-    }
-    display-ads, display_ad, .m-block-ad, .adWrapper, .top-ad-wrapper
-    {
-        display:none !important;
-    }
-    views-native-ad {
-        display:none !important;
-    }
-    div[data-ad], div[data-ad-slot], div[data-ad-size], div[data-ad-id], div[data-adwidth], div[data-ad-unit-path], div[data-ad-format], div[data-dfp-mobile], div[data-ads-core], .fig-ad-content
-    {
-        display:none !important;
-    }
-    div[id*="adslot"] {
-        display:none !important;
-    }
-    /* hide that stupid breaking new section on youtube */
-    #dismissible:has(#rich-shelf-header) {
-        display:none !important;
-    }
-    div[class*="adHeight"], div[class*="ad-height"], div[class*="ad-unit"], div[class*="adMinHeight"], div[class*="adBlock"] {
-        display:none !important;
-    }
-    div[class*="adWidth"], div[class*="ad-width"], div[class*="ad-slot"], div[class*="adMinWidth"] {
-        display:none !important;
-    }
-    /* to hide display ads in youtube videos...*/
-    .html5-video-player .video-ads .ytp-ad-overlay-slot {
-        display:none !important;
-    }
-    `;
-    document.head.appendChild(style);  
-}
-
 /**
  * It hides/skips youtube ads as soon as they show up,
  * solution found at https://stackoverflow.com/a/58933059/1331003
@@ -392,7 +331,6 @@ const callbackGmail = (mutationList, observer) => {
     }
 };
 
-addStyleSheetAds();
 if(scriptEnable) {
     if (location.hostname.indexOf("youtube") != -1) {
         var setupObserverInterval1 = setInterval(() => {
