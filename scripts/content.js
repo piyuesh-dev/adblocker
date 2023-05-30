@@ -65,6 +65,7 @@ findAllEmptyAdDivs = (rootEl) => {
             div[id*="div-gpt-ad"],
             div[id*="ad-slot"],
             div[id*="adslot"],
+            [id*="native_ad_nativead"],
             div[id*="bordeaux-standard-ad"],
             div[data-testid="StandardAd"],
             div[data-testid="top-ad-container-ad"],
@@ -110,7 +111,9 @@ findAllEmptyAdDivs = (rootEl) => {
             .dom_annotate_multifeed_bundle_AdBundle,
             .dom_annotate_ad_image_ad,
             .dotcom-ad,
+            #partners.river-section,
             display-ads,
+            cs-native-ad-card,
             views-native-ad
             `)
     ));
@@ -275,6 +278,7 @@ let oldHref = document.location.href;
 
 // Options for the observer (which mutations to observe)
 const config = { attributes: false, childList: true, subtree: true };
+//var pageHeight = document.body.offsetHeight;
 
 // Callback function to execute when mutations are observed
 const callback = (mutationList, observer) => {

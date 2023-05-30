@@ -8,7 +8,7 @@ div[id^="gpt_ad"], div[id*="gpt-ad"], div[class*="ad-container"], div[id*="borde
 {
     display: none;
 }
-div[id*="ad-slot"], .advert__container {
+div[id*="ad-slot"], .advert__container, [id*="native_ad_nativead"] {
     display:none !important;
 }
 div[id*="div-gpt-ad"], .advertisement, .bbccom_advert, .dfp-ad, .dfp-slot, .dfp-leaderboard-container {
@@ -28,7 +28,10 @@ ins[class="adsbygoogle"], amp-embed[type="taboola"], div[id*="taboola"], .dom_an
 {
     display:none !important;
 }
-display-ads, display_ad, .m-block-ad, .adWrapper, .top-ad-wrapper
+div#partners[class*=river], cs-native-ad-card.card-container {
+    display:none !important;
+}
+display-ads, display_ad, .m-block-ad, .adWrapper, .top-ad-wrapper, cs-native-ad-card
 {
     display:none !important;
 }
@@ -39,7 +42,7 @@ div[data-ad], div[data-ad-slot], div[data-ad-size], div[data-ad-id], div[data-ad
 {
     display:none !important;
 }
-div[id*="adslot"] {
+div[id*="adslot"], .ad-flexible, .ad-cls {
     display:none !important;
 }
 /* hide that stupid breaking new section on youtube */
