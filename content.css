@@ -42,7 +42,7 @@ div[data-ad], div[data-ad-slot], div[data-ad-size], div[data-ad-id], div[data-ad
 {
     display:none !important;
 }
-div[id*="adslot"], .ad-flexible, .ad-cls {
+div[id*="adslot"], .ad-flexible, .ad-cls, .ad, .l-ad {
     display:none !important;
 }
 /* hide that stupid breaking new section on youtube */

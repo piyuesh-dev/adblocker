@@ -107,6 +107,7 @@ findAllEmptyAdDivs = (rootEl) => {
             .top-ad-wrapper,
             .text-ad,
             .amp-ad,
+            .ad,
             .advertisement,
             .dom_annotate_multifeed_bundle_AdBundle,
             .dom_annotate_ad_image_ad,

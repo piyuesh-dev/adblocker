@@ -1,21 +1,9 @@
 [
     {
-      "id": 1,
-      "priority": 1,
-      "action": { "type": "block" },
-      "condition": {"urlFilter": "googleads", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
-    },
-    {
-        "id": 2,
-        "priority": 1,
-        "action": { "type": "block" },
-        "condition": {"urlFilter": "adservice", "resourceTypes": ["sub_frame","script"] }
-    },
-    {
       "id": 3,
       "priority": 1,
       "action": { "type": "block" },
-      "condition": { "urlFilter": "taboola", "resourceTypes": ["script","sub_frame","xmlhttprequest"] }
+      "condition": { "regexFilter": "taboola|googleads|adservice", "resourceTypes": ["script","sub_frame","xmlhttprequest"] }
     },
     {
         "id": 4,
@@ -33,19 +21,7 @@
         "id": 6,
         "priority": 1,
         "action": { "type": "block" },
-        "condition": {"urlFilter": "fireworktv", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
-    },
-    {
-        "id": 7,
-        "priority": 1,
-        "action": { "type": "block" },
-        "condition": {"urlFilter": "adpushup", "resourceTypes": ["sub_frame","script"] }
-    },
-    {
-        "id": 8,
-        "priority": 1,
-        "action": { "type": "block" },
-        "condition": {"urlFilter": "fwpub1", "resourceTypes": ["sub_frame","script"] }
+        "condition": {"regexFilter": "fireworktv|adpushup|fwpub1", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
     },
     {
         "id": 9,
@@ -72,22 +48,10 @@
         "condition": {"regexFilter": "mgid.com|cdn.pushwoosh.com|rubiconproject.com|cdn.spot.im|launcher.spot.im", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
     },
     {
-        "id": 13,
-        "priority": 1,
-        "action": { "type": "block" },
-        "condition": {"urlFilter": "vdo.ai", "resourceTypes": ["sub_frame","script","xmlhttprequest","media"] }
-    },
-    {
-        "id": 14,
-        "priority": 1,
-        "action": { "type": "block" },
-        "condition": {"urlFilter": "clmbtech.com", "resourceTypes": ["sub_frame","script","xmlhttprequest","media"] }
-    },
-    {
         "id": 15,
         "priority": 1,
         "action": { "type": "block" },
-        "condition": {"urlFilter": "vuukle.com", "resourceTypes": ["sub_frame","script","xmlhttprequest","media"] }
+        "condition": {"regexFilter": "vuukle.com|clmbtech.com|vdo.ai", "resourceTypes": ["sub_frame","script","xmlhttprequest","media"] }
     },
     {
         "id": 16,
@@ -159,19 +123,7 @@
         "id": 27,
         "priority": 1,
         "action": { "type": "block" },
-        "condition": {"urlFilter": "google-analytics.com", "resourceTypes": ["sub_frame","script","xmlhttprequest","media"] }
-    },
-    {
-        "id": 28,
-        "priority": 1,
-        "action": { "type": "block" },
-        "condition": {"urlFilter": "googletagmanager.com", "resourceTypes": ["sub_frame","script","xmlhttprequest","media"] }
-    },
-    {
-        "id": 29,
-        "priority": 1,
-        "action": { "type": "block" },
-        "condition": {"urlFilter": "googletagservices.com", "resourceTypes": ["sub_frame","script","xmlhttprequest","media"] }
+        "condition": {"regexFilter": "google-analytics.com|googletagmanager.com|googletagservices.com", "resourceTypes": ["sub_frame","script","xmlhttprequest","media"] }
     },
     {
         "id": 30,
@@ -231,7 +183,7 @@
         "id": 39,
         "priority": 1,
         "action": { "type": "block" },
-        "condition": {"urlFilter": "connect.facebook.net/*/fbevents.js", "resourceTypes": ["sub_frame","script"] }
+        "condition": {"regexFilter": "api.useinsider.com/ins.js|connect.facebook.net/*/fbevents.js", "resourceTypes": ["sub_frame","script"] }
     },
     {
         "id": 40,
@@ -303,7 +255,7 @@
         "id": 51,
         "priority": 1,
         "action": { "type": "block" },
-        "condition": {"urlFilter": "https://d2r1yp2w7bby2u.cloudfront.net/js/clevertap.min.js", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
+        "condition": {"regexFilter": "https://d2r1yp2w7bby2u.cloudfront.net/js|https://d246big5q963u9.cloudfront.net/vue_ai.js", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
     },
     {
         "id": 52,
@@ -321,7 +273,7 @@
         "id": 54,
         "priority": 1,
         "action": { "type": "block" },
-        "condition": {"urlFilter": "https://cdn.izooto.com/scripts/", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
+        "condition": {"regexFilter": "https://cdn.izooto.com/scripts|https://cdn.appdynamics.com/adrum", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
     },
     {
         "id": 55,
@@ -339,7 +291,7 @@
         "id": 57,
         "priority": 1,
         "action": { "type": "block" },
-        "condition": {"urlFilter": "https://notix.io/ent/current/enot.min.js", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
+        "condition": {"regexFilter": "https://notix.io/ent/current/enot.min.js|https://a.quora.com/qevents.js", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
     },
     {
         "id": 58,
@@ -364,5 +316,23 @@
         "priority": 1,
         "action": { "type": "block" },
         "condition": {"regexFilter": "affinity.com|affinitymatrix.com|newads.rediff.com|bordeaux.futurecdn.net", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
+    },
+    {
+        "id": 62,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {"regexFilter": "player.aniview.com/script|tg1.playstream.media/api/adserver", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
+    },
+    {
+        "id": 63,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {"regexFilter": "public.flourish.studio/resources/embed.js|clientcdn.pushengage.com/core", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
+    },
+    {
+        "id": 64,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {"regexFilter": "static.cloudflareinsights.com/beacon", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
     }
 ]
