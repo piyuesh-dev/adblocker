@@ -117,7 +117,7 @@
         "id": 26,
         "priority": 1,
         "action": { "type": "block" },
-        "condition": {"urlFilter": "revcontent.com", "resourceTypes": ["sub_frame","script","xmlhttprequest","media"] }
+        "condition": {"regexFilter": "revcontent.com|6sc.co|gfg_ads|prebid|tag.demandbase", "resourceTypes": ["sub_frame","script","xmlhttprequest","media"] }
     },
     {
         "id": 27,

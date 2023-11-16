@@ -234,8 +234,9 @@ hideYoutubeAds = () => {
         if (ad) {
             const video = ad.querySelector('video');
             // skip video to end of it's duration...or click on skip if available...
+            // ytp-ad-skip-button-modern
             if (video) {
-                let skipButton = ad.querySelector("button.ytp-ad-skip-button");
+                let skipButton = ad.querySelector("button.ytp-ad-skip-button,button.ytp-ad-skip-button-modern");
                 // console.log("time is-------------",video.currentTime);
                 // console.log("duration is-------------",video.duration);
 
