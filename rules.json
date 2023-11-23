@@ -105,13 +105,13 @@
         "id": 24,
         "priority": 1,
         "action": { "type": "block" },
-        "condition": {"urlFilter": "go.automatad.com", "resourceTypes": ["sub_frame","script","xmlhttprequest","media"] }
+        "condition": {"regexFilter": "go.automatad.com|cdn.p-n.io|s-onetag.com|cdn.boomtrain.com", "resourceTypes": ["sub_frame","script","xmlhttprequest","media"] }
     },
     {
         "id": 25,
         "priority": 1,
         "action": { "type": "block" },
-        "condition": {"urlFilter": "ad.vidverto.io", "resourceTypes": ["sub_frame","script","xmlhttprequest","media"] }
+        "condition": {"regexFilter": "ad.vidverto.io|js.adsrvr.org|cdn.brandmetrics.com", "resourceTypes": ["sub_frame","script","xmlhttprequest","media"] }
     },
     {
         "id": 26,
