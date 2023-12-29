@@ -1,7 +1,7 @@
 # No Ads
 Surf web faster and without distraction.
 
-Simple Ad blocker to block Display ads, trackers and auto skip Youtube video ads, hide gmail, amazon ads.
+Simple Ad blocker to block Display ads, trackers and **auto skip Youtube video** ads, hide gmail, amazon ads.
 
 ### Chrome Extension
 https://chrome.google.com/webstore/detail/no-ads/nhoimkephmfpfakaopdjheigigmfefge
@@ -9,7 +9,7 @@ https://chrome.google.com/webstore/detail/no-ads/nhoimkephmfpfakaopdjheigigmfefg
 # Features
 
 ### Skips Youtube video ads
-As soon as a video ad shows up, it skips them.
+As soon as a video ad shows up, it skips them. Also hides display ads on Youtube videos.
 
 ### Blocks Display Ads
 Defined few rules (https://developer.chrome.com/docs/extensions/reference/declarativeNetRequest/) to block script, XHR from certain ad or sponsored content serving urls e.g. google ads, pubmatic, microsoft ads, taboola, outbrain, etc..
