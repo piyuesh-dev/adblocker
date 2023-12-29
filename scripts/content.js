@@ -110,6 +110,7 @@ findAllEmptyAdDivs = (rootEl) => {
             .adWrapper,
             .top-ad-wrapper,
             .text-ad,
+            .advert,
             .amp-ad,
             .ad,
             .advertisement,

@@ -71,3 +71,6 @@ ytd-engagement-panel-title-header-renderer[ads-semantic-text],ytd-engagement-pan
 #sda-Horizon, .gemini-ad, .native-ad-item {
     display:none !important;
 }
+.advert, .advert--leaderboard {
+    display:none !important;
+}
