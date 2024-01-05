@@ -49,10 +49,10 @@ div[id*="adslot"], .ad-flexible, .ad-cls, .ad, .l-ad {
 #dismissible:has(#rich-shelf-header) {
     display:none !important;
 }
-div[class*="adHeight"], div[class*="ad-height"], div[class*="ad-unit"], div[class*="adMinHeight"], div[class*="adBlock"] {
+div[class~="adHeight"], div[class~="ad-height"], div[class*="ad-unit"], div[class*="adMinHeight"], div[class*="adBlock"] {
     display:none !important;
 }
-div[class*="adWidth"], div[class*="ad-width"], div[class*="ad-slot"], div[class*="adMinWidth"] {
+div[class~="adWidth"], div[class~="ad-width"], div[class*="ad-slot"], div[class*="adMinWidth"] {
     display:none !important;
 }
 /* to hide display ads in youtube videos...*/
