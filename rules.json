@@ -39,7 +39,7 @@
         "id": 11,
         "priority": 1,
         "action": { "type": "block" },
-        "condition": {"urlFilter": "googlesyndication", "resourceTypes": ["sub_frame","script","xmlhttprequest","media"] }
+        "condition": {"regexFilter": "googlesyndication|cdn.segment.com|npttech.com", "resourceTypes": ["sub_frame","script","xmlhttprequest","media"] }
     },
     {
         "id": 12,

@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "No Ads",
     "description": "Blocks display ads, trackers and auto skip Youtube Video ads.",
-    "version": "0.1.6",
+    "version": "0.1.7",
     "declarative_net_request": {
       "rule_resources": [{
         "id": "ruleset_1",

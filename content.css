@@ -38,7 +38,7 @@ display-ads, display_ad, .m-block-ad, .adWrapper, .top-ad-wrapper, cs-native-ad-
 views-native-ad {
     display:none !important;
 }
-div[data-ad], div[data-ad-slot], div[data-ad-size], div[data-ad-id], div[data-adwidth], div[data-ad-unit-path], div[data-ad-format], div[data-dfp-mobile], div[data-ads-core], .fig-ad-content
+div[data-ad], div[data-ad-slot], div[data-adcode], div[data-ad-size], div[data-ad-id], div[data-adwidth], div[data-ad-unit-path], div[data-ad-format], div[data-dfp-mobile], div[data-ads-core], .fig-ad-content
 {
     display:none !important;
 }
@@ -49,10 +49,10 @@ div[id*="adslot"], .ad-flexible, .ad-cls, .ad, .l-ad {
 #dismissible:has(#rich-shelf-header) {
     display:none !important;
 }
-div[class~="adHeight"], div[class~="ad-height"], div[class*="ad-unit"], div[class*="adMinHeight"], div[class*="adBlock"] {
+div[class^="adHeight"], div[class~="ad-height"], div[class*="ad-unit"], div[class*="adMinHeight"], div[class*="adBlock"] {
     display:none !important;
 }
-div[class~="adWidth"], div[class~="ad-width"], div[class*="ad-slot"], div[class*="adMinWidth"] {
+div[class^="adWidth"], div[class~="ad-width"], div[class*="ad-slot"], div[class*="adMinWidth"] {
     display:none !important;
 }
 /* to hide display ads in youtube videos...*/
@@ -71,6 +71,6 @@ ytd-engagement-panel-title-header-renderer[ads-semantic-text],ytd-engagement-pan
 #sda-Horizon, .gemini-ad, .native-ad-item {
     display:none !important;
 }
-.advert, .advert--leaderboard {
+.advert, .advert--leaderboard, .pramotedWidget {
     display:none !important;
 }
