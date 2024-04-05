@@ -71,6 +71,13 @@ ytd-engagement-panel-title-header-renderer[ads-semantic-text],ytd-engagement-pan
 #sda-Horizon, .gemini-ad, .native-ad-item {
     display:none !important;
 }
-.advert, .advert--leaderboard, .pramotedWidget {
+.advert, .advert--leaderboard, .pramotedWidget, div[data-testid="brainly_ads_placeholder"], .brn-unlock-section {
     display:none !important;
+}
+div[class*="AnswerBoxLayout-module__belowBlockade"] {
+    display:none !important;
+}
+div[class*="AnswerBoxLayout-module__contentBlocked"] {
+    max-height: none !important;
+    overflow: visible;
 }

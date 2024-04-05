@@ -51,7 +51,7 @@
         "id": 15,
         "priority": 1,
         "action": { "type": "block" },
-        "condition": {"regexFilter": "vuukle.com|clmbtech.com|vdo.ai", "resourceTypes": ["sub_frame","script","xmlhttprequest","media"] }
+        "condition": {"regexFilter": "vuukle.com|clmbtech.com|vdo.ai|.*html-load.com", "resourceTypes": ["sub_frame","script","xmlhttprequest","media"] }
     },
     {
         "id": 16,
@@ -135,7 +135,7 @@
         "id": 31,
         "priority": 1,
         "action": { "type": "block" },
-        "condition": {"urlFilter": "yandex.ru", "resourceTypes": ["sub_frame","script","xmlhttprequest","media"] }
+        "condition": {"regexFilter": "yandex.ru|optiyield.opti-digital.com/pfc", "resourceTypes": ["sub_frame","script","xmlhttprequest","media"] }
     },
     {
         "id": 32,
@@ -183,7 +183,7 @@
         "id": 39,
         "priority": 1,
         "action": { "type": "block" },
-        "condition": {"regexFilter": "api.useinsider.com/ins.js|connect.facebook.net/*/fbevents.js", "resourceTypes": ["sub_frame","script"] }
+        "condition": {"regexFilter": "api.useinsider.com/ins.js|connect.facebook.net/.*/fbevents.js", "resourceTypes": ["sub_frame","script"] }
     },
     {
         "id": 40,
@@ -195,13 +195,13 @@
         "id": 41,
         "priority": 1,
         "action": { "type": "block" },
-        "condition": {"urlFilter": "apis.kostprice.com/", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
+        "condition": {"regexFilter": "apis.kostprice.com|siteintercept.qualtrics.com|js-sec.indexww.com", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
     },
     {
         "id": 42,
         "priority": 1,
         "action": { "type": "block" },
-        "condition": {"urlFilter": "delivery.adrecover.com", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
+        "condition": {"regexFilter": "delivery.adrecover.com|prod.adspsp.com|trc.lhmos.com", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
     },
     {
         "id": 43,
@@ -231,7 +231,7 @@
         "id": 47,
         "priority": 1,
         "action": { "type": "block" },
-        "condition": {"regexFilter": "doubleverify.com|adlightning.com|acdn.adnxs.com|https://cdn.inspectlet.com/inspectlet.js", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
+        "condition": {"regexFilter": "doubleverify.com|adlightning.com|.*adnxs.com|cdn.inspectlet.com/inspectlet.js", "resourceTypes": ["sub_frame","script","xmlhttprequest","media"] }
     },
     {
         "id": 48,
@@ -334,5 +334,11 @@
         "priority": 1,
         "action": { "type": "block" },
         "condition": {"regexFilter": "static.cloudflareinsights.com/beacon", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
+    },
+    {
+        "id": 65,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {"regexFilter": "sail-personalize.com|carbonads.net|carbonads.com|.*analytics.*", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
     }
 ]
