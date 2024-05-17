@@ -241,7 +241,7 @@ hideYoutubeAds = () => {
             // skip video to end of it's duration...or click on skip if available...
             // ytp-ad-skip-button-modern
             if (video) {
-                let skipButton = ad.querySelector("button.ytp-ad-skip-button,button.ytp-ad-skip-button-modern");
+                let skipButton = ad.querySelector("button.ytp-skip-ad-button,button.ytp-ad-skip-button,button.ytp-ad-skip-button-modern");
                 // console.log("time is-------------",video.currentTime);
                 // console.log("duration is-------------",video.duration);
 
@@ -310,7 +310,7 @@ const callbackYt = (mutationList, observer) => {
             // console.log('A child node has been added or removed.');
             // find if ads overlay is added...then we can call our function to hide ads...ytp-ad-player-overlay
             if (mutation.addedNodes && mutation.addedNodes.length) {
-                let videoAdsOverlay = mutation.target.querySelector(".ytp-ad-player-overlay");
+                let videoAdsOverlay = mutation.target.querySelector(".ytp-ad-player-overlay,.ytp-ad-player-overlay-layout");
 
                 // console.log("found ads overlay..., now hide ads...");
                 videoAdsOverlay ? hideYoutubeAds() : "";

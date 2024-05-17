@@ -1,3 +1,7 @@
+### 0.1.9
+Corrected youtube css selectors, it was not able to auto skip some time, corrected it.
+### 0.1.8
+Hide few more css selectors, and blocked few more analytics trackers.
 ### 0.0.8
 Hide few more css selectors, and blocked few more analytics trackers.
 ### 0.0.7

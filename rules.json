@@ -207,7 +207,7 @@
         "id": 43,
         "priority": 1,
         "action": { "type": "block" },
-        "condition": {"urlFilter": "https://cdn.heapanalytics.com/js/", "resourceTypes": ["sub_frame","script"] }
+        "condition": {"regexFilter": "cdn.heapanalytics.com/js/|static.chartbeat.com", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
     },
     {
         "id": 44,
