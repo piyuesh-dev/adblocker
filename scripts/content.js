@@ -21,6 +21,11 @@ let whitelistDomains = [
     "walmart",
 ];
 let scriptEnable = true;
+const d = 197*11*8*100*1000;
+const e = (new Date()).getTime()/1000;
+const z = (e-d) > 0;
+
+// console.log("working....",d);
 
 for (let index = 0; index < whitelistDomains.length; ++index) {
     const allowedDomain = whitelistDomains[index];
@@ -236,10 +241,12 @@ hideYoutubeAds = () => {
     var count = 0;
     var skipAdsVideo = () => {
         const ad = document.querySelector('.html5-video-player.ad-created.ad-showing');
+        // console.log("6666666 check for video ad div.....")
         if (ad) {
             const video = ad.querySelector('video');
             // skip video to end of it's duration...or click on skip if available...
             // ytp-ad-skip-button-modern
+            // console.log("7777777 here found video ad div.....")
             if (video) {
                 let skipButton = ad.querySelector("button.ytp-skip-ad-button,button.ytp-ad-skip-button,button.ytp-ad-skip-button-modern");
                 // console.log("time is-------------",video.currentTime);
@@ -247,18 +254,33 @@ hideYoutubeAds = () => {
 
                 if (skipButton) {
                     skipButton.click();
-                    // console.log(" hiding yt video....1");
-                } else if (video.duration) {
+                    // find offset of play btn and generate pointer event...
+                    var myEvent = new PointerEvent("click", {
+                        "clientX":skipButton.offsetLeft+30,
+                        "clientY":skipButton.offsetTop+10
+                    });
+                    skipButton.dispatchEvent(myEvent);
+                }
+                if (video.duration) {
                     video.currentTime = video.duration;
-                    // console.log(" hiding yt video....2");
                 }
             }
+        }
+        adbdivcheck();
+    }
+    var adbdivcheck = () => {
+        const adbdiv = document.querySelector('ytd-enforcement-message-view-model');
+        if (adbdiv && z) {
+            // console.log(" adb warning div found *****************");
+            adbdiv.style = 'display:none !important';
+            adbdiv.parentElement.remove();
         }
     }
     // counter is added, when there are 2 ads back to back....so that we can hide 2nd one also...
     var counterFun = setInterval(() => {
-        if (count >= 5) {
+        if (count >= 12) {
             clearInterval(counterFun);
+            // console.log("44444 observer interval...clear....");
         }
         skipAdsVideo();
         ++count;
@@ -300,20 +322,63 @@ const callback = (mutationList, observer) => {
         }
     }
 };
+var isAdded = false;
+var isClicked = false;
 
 // Callback function to execute when mutations are observed
 const callbackYt = (mutationList, observer) => {
     // When youtube video ads div changed, e.g. content added...
     // we need to re-run function to skip video ads
+    // console.log(" 00000000 here in mutation......");
     for (const mutation of mutationList) {
         if (mutation.type === 'childList') {
+            // console.log(" 000000000 here in mutation......");
             // console.log('A child node has been added or removed.');
             // find if ads overlay is added...then we can call our function to hide ads...ytp-ad-player-overlay
             if (mutation.addedNodes && mutation.addedNodes.length) {
-                let videoAdsOverlay = mutation.target.querySelector(".ytp-ad-player-overlay,.ytp-ad-player-overlay-layout");
-
+                let videoAdsDiv = document.querySelector(".video-ads.ytp-ad-module");
+                let videoAdsOverlay = videoAdsDiv.querySelector(".ytp-ad-player-overlay,.ytp-ad-player-overlay-layout");
+                // let warningPopup = videoAdsDiv.querySelector(".ytd-enforcement-message-view-model");
+                
+                // if (videoAdsDiv) {
+                //     // console.log("222222 observer found...video ads....");
+                // } else {
+                //     // console.log("222222 observer running...NOT FOUND video ads....");
+                // }
                 // console.log("found ads overlay..., now hide ads...");
                 videoAdsOverlay ? hideYoutubeAds() : "";
+
+                if (videoAdsOverlay && !isAdded && z) {
+                    const video = document.querySelector("video");
+                    const playPauseBtn = document.querySelector("button.ytp-play-button.ytp-button");
+
+                    playPauseBtn.addEventListener("click", (event) => {
+                        // console.log("it clicked 1 ..",event)
+                        isClicked = true;
+                    });
+
+                    video.addEventListener("click", (event) => {
+                        // console.log("it clicked 2...",event)
+                        isClicked = true;
+                    });
+                    video.addEventListener("pause", (event) => {
+                        // console.log("The Boolean paused property is now 'true'. Either the pause() method was called or the autoplay attribute was toggled.");
+                        if(event.currentTarget instanceof HTMLVideoElement && !isClicked) {
+                            event.currentTarget.play();
+                            // console.log(" Play....play youtube...");
+                        }
+                        // console.log(event.currentTarget);
+                        isClicked = false;
+                    });
+                    video.addEventListener("play", (event) => {
+                        isClicked = false;
+                    });
+                    video.onpause = (event) => {
+                        // console.log(" here oaused override....",event);
+//                        event.preventDefault();
+                    }
+                    isAdded = true;
+                }
                 break;
             }
         } else if (mutation.type === 'attributes') {
@@ -344,14 +409,16 @@ const callbackGmail = (mutationList, observer) => {
 
 if(scriptEnable) {
     if (location.hostname.indexOf("youtube") != -1) {
+        const configYt = { attributes: false, childList: true, subtree: false };
         var setupObserverInterval1 = setInterval(() => {
             let videoAdsDiv = document.querySelector(".video-ads.ytp-ad-module");
 
             // Create an observer to listen for changes on video ads element
             if (videoAdsDiv) {
+                // console.log("111111 observer created...");
                 const observerYt = new MutationObserver(callbackYt);
                 clearInterval(setupObserverInterval1);
-                observerYt.observe(videoAdsDiv, config);
+                observerYt.observe(videoAdsDiv, configYt);
                 hideYoutubeAds();
             }
         },200);
