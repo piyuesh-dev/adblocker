@@ -339,6 +339,12 @@
         "id": 65,
         "priority": 1,
         "action": { "type": "block" },
-        "condition": {"regexFilter": "sail-personalize.com|carbonads.net|carbonads.com|.*analytics.*", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
+        "condition": {"regexFilter": "sail-personalize.com|carbonads.net|carbonads.com", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
+    },
+    {
+        "id": 66,
+        "priority": 1,
+        "action": { "type": "block" },
+        "condition": {"regexFilter": "adlooxtracking.com|ads-static.conde.digital|js.sentry-cdn.com", "resourceTypes": ["sub_frame","script","xmlhttprequest"] }
     }
 ]
