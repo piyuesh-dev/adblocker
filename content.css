@@ -59,6 +59,10 @@ div[class^="adWidth"], div[class~="ad-width"], div[class*="ad-slot"], div[class*
 .html5-video-player .video-ads .ytp-ad-overlay-slot {
     display:none !important;
 }
+.ytp-suggested-action-badge.ytp-featured-product {
+    display:none !important;
+}
+
 .ads-semantic-text, .stream-ad, #big-yoodle, #masthead-ad {
     display:none !important;
 }
@@ -68,6 +72,7 @@ ytd-engagement-panel-section-list-renderer[target-id="engagement-panel-ads"] {
 ytd-engagement-panel-title-header-renderer[ads-semantic-text],ytd-engagement-panel-title-header-renderer[target-id="engagement-panel-ads"], ytd-ad-slot-renderer {
     display:none !important;
 }
+
 #sda-Horizon, .gemini-ad, .native-ad-item {
     display:none !important;
 }
@@ -80,4 +85,7 @@ div[class*="AnswerBoxLayout-module__belowBlockade"] {
 div[class*="AnswerBoxLayout-module__contentBlocked"] {
     max-height: none !important;
     overflow: visible;
+}
+.osv-ad-class, .adboxtop{
+    display: none;
 }

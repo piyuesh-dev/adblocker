@@ -125,7 +125,9 @@ findAllEmptyAdDivs = (rootEl) => {
             #partners.river-section,
             display-ads,
             cs-native-ad-card,
-            views-native-ad
+            views-native-ad,
+            .osv-ad-class,
+            .adboxtop
             `)
     ));
 
@@ -266,19 +268,23 @@ hideYoutubeAds = () => {
                 }
             }
         }
+        addPlayPauseListener();
         adbdivcheck();
     }
     var adbdivcheck = () => {
         const adbdiv = document.querySelector('ytd-enforcement-message-view-model');
+        // console.log(" adb warning div found 1*****************");
         if (adbdiv && z) {
-            // console.log(" adb warning div found *****************");
+            // console.log(" adb warning div found 2*****************");
             adbdiv.style = 'display:none !important';
             adbdiv.parentElement.remove();
+            const video = document.querySelector(".video-stream.html5-main-video");
+            video.play();
         }
     }
     // counter is added, when there are 2 ads back to back....so that we can hide 2nd one also...
     var counterFun = setInterval(() => {
-        if (count >= 12) {
+        if (count >= 30) {
             clearInterval(counterFun);
             // console.log("44444 observer interval...clear....");
         }
@@ -325,6 +331,42 @@ const callback = (mutationList, observer) => {
 var isAdded = false;
 var isClicked = false;
 
+const addPlayPauseListener = () => {
+    const video = document.querySelector(".video-stream.html5-main-video");
+    if (video && !isAdded && z) {
+        // const video = document.querySelector("video");
+        const playPauseBtn = document.querySelector("button.ytp-play-button.ytp-button");
+
+        playPauseBtn.addEventListener("click", (event) => {
+            // console.log("it clicked 1 ..",event)
+            isClicked = true;
+        });
+
+        video.addEventListener("click", (event) => {
+            // console.log("it clicked 2...",event)
+            isClicked = true;
+        });
+        video.addEventListener("pause", (event) => {
+            // console.log("The Boolean paused property is now 'true'. Either the pause() method was called or the autoplay attribute was toggled.");
+            if(event.currentTarget instanceof HTMLVideoElement && !isClicked) {
+                event.currentTarget.play();
+                // console.log(" Play....play youtube...");
+            }
+            // console.log(event.currentTarget);
+            isClicked = false;
+        });
+        video.addEventListener("play", (event) => {
+            isClicked = false;
+        });
+        video.onpause = (event) => {
+            // console.log(" here oaused override....",event);
+//                        event.preventDefault();
+        }
+        // console.log(" added play/pause listener....");
+        isAdded = true;
+    }
+}
+
 // Callback function to execute when mutations are observed
 const callbackYt = (mutationList, observer) => {
     // When youtube video ads div changed, e.g. content added...
@@ -332,57 +374,26 @@ const callbackYt = (mutationList, observer) => {
     // console.log(" 00000000 here in mutation......");
     for (const mutation of mutationList) {
         if (mutation.type === 'childList') {
-            // console.log(" 000000000 here in mutation......");
-            // console.log('A child node has been added or removed.');
+            // console.log(" 1111122222 here in mutation......");
+            //console.log('A child node has been added or removed.');
             // find if ads overlay is added...then we can call our function to hide ads...ytp-ad-player-overlay
             if (mutation.addedNodes && mutation.addedNodes.length) {
                 let videoAdsDiv = document.querySelector(".video-ads.ytp-ad-module");
                 let videoAdsOverlay = videoAdsDiv.querySelector(".ytp-ad-player-overlay,.ytp-ad-player-overlay-layout");
-                // let warningPopup = videoAdsDiv.querySelector(".ytd-enforcement-message-view-model");
+                let warningPopup = document.querySelector(".ytd-enforcement-message-view-model");
                 
                 // if (videoAdsDiv) {
-                //     // console.log("222222 observer found...video ads....");
+                // console.log("222222 observer found...video ads....");
                 // } else {
-                //     // console.log("222222 observer running...NOT FOUND video ads....");
+                // console.log("222222 observer running...NOT FOUND video ads....");
                 // }
-                // console.log("found ads overlay..., now hide ads...");
-                videoAdsOverlay ? hideYoutubeAds() : "";
-
-                if (videoAdsOverlay && !isAdded && z) {
-                    const video = document.querySelector("video");
-                    const playPauseBtn = document.querySelector("button.ytp-play-button.ytp-button");
-
-                    playPauseBtn.addEventListener("click", (event) => {
-                        // console.log("it clicked 1 ..",event)
-                        isClicked = true;
-                    });
-
-                    video.addEventListener("click", (event) => {
-                        // console.log("it clicked 2...",event)
-                        isClicked = true;
-                    });
-                    video.addEventListener("pause", (event) => {
-                        // console.log("The Boolean paused property is now 'true'. Either the pause() method was called or the autoplay attribute was toggled.");
-                        if(event.currentTarget instanceof HTMLVideoElement && !isClicked) {
-                            event.currentTarget.play();
-                            // console.log(" Play....play youtube...");
-                        }
-                        // console.log(event.currentTarget);
-                        isClicked = false;
-                    });
-                    video.addEventListener("play", (event) => {
-                        isClicked = false;
-                    });
-                    video.onpause = (event) => {
-                        // console.log(" here oaused override....",event);
-//                        event.preventDefault();
-                    }
-                    isAdded = true;
-                }
+                //console.log("found ads overlay..., now hide ads...");
+                (videoAdsOverlay||warningPopup) ? hideYoutubeAds() : "";
+                addPlayPauseListener();
                 break;
             }
         } else if (mutation.type === 'attributes') {
-            // console.log(`The ${mutation.attributeName} attribute was modified.`);
+         //   console.log(`The ${mutation.attributeName} attribute was modified.`);
         }
     }
 };
@@ -410,8 +421,10 @@ const callbackGmail = (mutationList, observer) => {
 if(scriptEnable) {
     if (location.hostname.indexOf("youtube") != -1) {
         const configYt = { attributes: false, childList: true, subtree: false };
+        let popupMutationAdded = false;
         var setupObserverInterval1 = setInterval(() => {
             let videoAdsDiv = document.querySelector(".video-ads.ytp-ad-module");
+            let warningPopup = document.querySelector(".ytd-enforcement-message-view-model");
 
             // Create an observer to listen for changes on video ads element
             if (videoAdsDiv) {
@@ -419,6 +432,13 @@ if(scriptEnable) {
                 const observerYt = new MutationObserver(callbackYt);
                 clearInterval(setupObserverInterval1);
                 observerYt.observe(videoAdsDiv, configYt);
+                hideYoutubeAds();
+            } else if (warningPopup && !popupMutationAdded) {
+                // console.log("222222 observer created...");
+                const observerYt2 = new MutationObserver(callbackYt);
+                // clearInterval(setupObserverInterval1);
+                observerYt2.observe(warningPopup, configYt);
+                popupMutationAdded = true;
                 hideYoutubeAds();
             }
         },200);
